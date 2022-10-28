@@ -71,8 +71,7 @@
     "babel-jest": "^27.0.6",
     "babel-loader": "^8.0.5",
     "cypress": "^8.3.1",
-    "electron": "^14.2.4",
-    "electron-packager": "^15.4.0",
+    "electron-packager": "^17.0.0",
     "eslint": "^8.13.0",
     "file-loader": "^6.2.0",
     "fork-ts-checker-webpack-plugin": "^6.3.3",
@@ -101,8 +100,8 @@
     "url": "git+https://github.com/danielyxie/bitburner.git"
   },
   "scripts": {
-    "cy:test": "start-server-and-test start http://localhost:8000 cy:run",
-    "cy:dev": "start-server-and-test start:dev http://localhost:8000 cy:open",
+    "cy:test": "start-server-and-test start http://0.0.0.0:8000 cy:run",
+    "cy:dev": "start-server-and-test start:dev http://0.0.0.0:8000 cy:open",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "doc": "npx api-extractor run && npx api-documenter markdown && rm input/bitburner.api.json && rm -r input",
