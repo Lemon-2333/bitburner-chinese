@@ -5,6 +5,9 @@ import { OptionSwitch } from "../../ui/React/OptionSwitch";
 import { GameOptionsPage } from "./GameOptionsPage";
 import { formatTime } from "../../utils/helpers/formatTime";
 
+//import '../../i18n'
+import i18n from "../../i18n";
+
 export const InterfacePage = (): React.ReactElement => {
   const [timestampFormat, setTimestampFormat] = useState(Settings.TimestampsFormat);
   const [locale, setLocale] = useState(Settings.Locale);
@@ -12,6 +15,8 @@ export const InterfacePage = (): React.ReactElement => {
   function handleLocaleChange(event: SelectChangeEvent<string>): void {
     setLocale(event.target.value);
     Settings.Locale = event.target.value;
+    localStorage.setItem('locales', event.target.value);
+    i18n.changeLanguage(event.target.value)
   }
   function handleTimestampFormatChange(event: React.ChangeEvent<HTMLInputElement>): void {
     setTimestampFormat(event.target.value);
@@ -100,6 +105,7 @@ export const InterfacePage = (): React.ReactElement => {
         <MenuItem value="no">no</MenuItem>
         <MenuItem value="pl">pl</MenuItem>
         <MenuItem value="ru">ru</MenuItem>
+        <MenuItem value="chs">chs</MenuItem>
       </Select>
     </GameOptionsPage>
   );

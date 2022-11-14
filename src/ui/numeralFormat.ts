@@ -13,6 +13,7 @@ import "numeral/locales/lv";
 import "numeral/locales/no";
 import "numeral/locales/pl";
 import "numeral/locales/ru";
+import "numeral/locales/chs";
 
 import { Settings } from "../Settings/Settings";
 

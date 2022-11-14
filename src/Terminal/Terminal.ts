@@ -33,6 +33,8 @@ import {
 import { numeralWrapper } from "../ui/numeralFormat";
 import { convertTimeMsToTimeElapsedString } from "../utils/StringHelperFunctions";
 
+import { locales_test } from "./commands/locales_test";
+import { locales_change } from "./commands/locales_change";
 import { alias } from "./commands/alias";
 import { analyze } from "./commands/analyze";
 import { backdoor } from "./commands/backdoor";
@@ -74,6 +76,8 @@ import { wget } from "./commands/wget";
 import { hash } from "../hash/hash";
 import { apr1 } from "./commands/apr1";
 import { BitNodeMultipliers } from "../BitNode/BitNodeMultipliers";
+
+import i18n from "../i18n";
 
 export class Terminal {
   // Flags to determine whether the player is currently running a hack or an analyze
@@ -174,7 +178,7 @@ export class Terminal {
   }
 
   startAnalyze(): void {
-    this.print("Analyzing system...");
+    this.print(i18n.t('analyze.start',{ns : 'command'}));
     const server = Player.getCurrentServer();
     this.startAction(1, "a", server);
   }
@@ -337,12 +341,12 @@ export class Terminal {
       );
       if (currServ instanceof Server) {
         const numPort = currServ.numOpenPortsRequired;
-        this.print("Required number of open ports for NUKE: " + (!isHacknet ? numPort : "N/A"));
-        this.print("SSH port: " + (currServ.sshPortOpen ? "Open" : "Closed"));
-        this.print("FTP port: " + (currServ.ftpPortOpen ? "Open" : "Closed"));
-        this.print("SMTP port: " + (currServ.smtpPortOpen ? "Open" : "Closed"));
-        this.print("HTTP port: " + (currServ.httpPortOpen ? "Open" : "Closed"));
-        this.print("SQL port: " + (currServ.sqlPortOpen ? "Open" : "Closed"));
+        this.print(i18n.t('analyze.finish_NUKE',{ns:'command'}) + (!isHacknet ? numPort : "N/A"));
+        this.print(`SSH ${i18n.t('port',{ns:'common'})}: ` + (currServ.sshPortOpen ? i18n.t('Open',{ns:"common"}) : i18n.t('Closed',{ns:"common"})));
+        this.print(`FTP ${i18n.t('port',{ns:'common'})}: ` + (currServ.ftpPortOpen ? i18n.t('Open',{ns:"common"}) : i18n.t('Closed',{ns:"common"})));
+        this.print(`SMTP ${i18n.t('port',{ns:'common'})}: ` + (currServ.smtpPortOpen ? i18n.t('Open',{ns:"common"}) : i18n.t('Closed',{ns:"common"})));
+        this.print(`HTTP ${i18n.t('port',{ns:'common'})}: ` + (currServ.httpPortOpen ? i18n.t('Open',{ns:"common"}) : i18n.t('Closed',{ns:"common"})));
+        this.print(`SQL ${i18n.t('port',{ns:'common'})}: ` + (currServ.sqlPortOpen ? i18n.t('Open',{ns:"common"}) : i18n.t('Closed',{ns:"common"})));
       }
     }
   }
@@ -787,6 +791,8 @@ export class Terminal {
       [key: string]: (args: (string | number | boolean)[], server: BaseServer) => void;
     } = {
       "scan-analyze": scananalyze,
+      locales_test:locales_test,
+      locales_change:locales_change,
       alias: alias,
       analyze: analyze,
       backdoor: backdoor,

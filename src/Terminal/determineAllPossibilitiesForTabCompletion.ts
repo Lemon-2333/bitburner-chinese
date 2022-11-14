@@ -16,6 +16,9 @@ import * as libarg from "arg";
 
 // An array of all Terminal commands
 const commands = [
+  "locales_test",
+  "locales_change",
+  "unalias",
   "alias",
   "analyze",
   "backdoor",
