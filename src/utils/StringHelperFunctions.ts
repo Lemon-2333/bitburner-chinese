@@ -1,6 +1,6 @@
 import { Settings } from "../Settings/Settings";
 import { isString } from "./helpers/isString";
-
+import i18n from '../i18n'
 /*
 Converts a date representing time in milliseconds to a string with the format H hours M minutes and S seconds
 e.g.    10000 -> "10 seconds"
@@ -37,15 +37,15 @@ function convertTimeMsToTimeElapsedString(time: number, showMilli = false): stri
 
   let res = "";
   if (days > 0) {
-    res += `${days} day${days === 1 ? "" : "s"} `;
+    res += `${days} ${i18n.t('day',{ns:'common'})}${days === 1 ? "" : i18n.t('plural',{ns:'common'})} `;
   }
   if (hours > 0 || (Settings.ShowMiddleNullTimeUnit && res != "")) {
-    res += `${hours} hour${hours === 1 ? "" : "s"} `;
+    res += `${hours} ${i18n.t('hour',{ns:'common'})}${hours === 1 ? "" : i18n.t('plural',{ns:'common'})} `;
   }
   if (minutes > 0 || (Settings.ShowMiddleNullTimeUnit && res != "")) {
-    res += `${minutes} minute${minutes === 1 ? "" : "s"} `;
+    res += `${minutes} ${i18n.t('minute',{ns:'common'})}${minutes === 1 ? "" : i18n.t('plural',{ns:'common'})} `;
   }
-  res += `${seconds} second${!showMilli && secTruncMinutes === 1 ? "" : "s"}`;
+  res += `${seconds} ${i18n.t('second',{ns:'common'})}${!showMilli && secTruncMinutes === 1 ? "" : i18n.t('plural',{ns:'common'})}`;
 
   return res;
 }

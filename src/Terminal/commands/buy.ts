@@ -1,16 +1,17 @@
 import { Terminal } from "../../Terminal";
 import { Player } from "@player";
 import { listAllDarkwebItems, buyAllDarkwebItems, buyDarkwebItem } from "../../DarkWeb/DarkWeb";
+import i18n from "../../i18n";
 
 export function buy(args: (string | number | boolean)[]): void {
   if (!Player.hasTorRouter()) {
     Terminal.error(
-      "You need to be able to connect to the Dark Web to use the buy command. (Maybe there's a TOR router you can buy somewhere)",
+      i18n.t('buy.error.connect', { ns: 'command' }),
     );
     return;
   }
   if (args.length != 1) {
-    Terminal.print("Incorrect number of arguments. Usage: ");
+    Terminal.print(i18n.t('buy.error.usage', { ns: 'command' }));
     Terminal.print("buy -l");
     Terminal.print("buy -a");
     Terminal.print("buy [item name]");

@@ -45,6 +45,8 @@ import { setupUncaughtPromiseHandler } from "./UncaughtPromiseHandler";
 import { Button, Typography } from "@mui/material";
 import { SnackbarEvents, ToastVariant } from "./ui/React/Snackbar";
 
+import i18n from "./i18n";
+
 /** Game engine. Handles the main game loop. */
 const Engine: {
   _lastUpdate: number;
@@ -348,19 +350,19 @@ const Engine: {
         () =>
           AlertEvents.emit(
             <>
-              <Typography>Offline for {timeOfflineString}. While you were offline:</Typography>
+              <Typography>{i18n.t('offline.a',{ns:'ui'})} {timeOfflineString}{i18n.t('offline.b',{ns:'ui'})} </Typography>
               <ul>
                 <li>
                   <Typography>
-                    Your scripts generated <Money money={offlineHackingIncome} />
+                  {i18n.t('offline.c',{ns:'ui'})} <Money money={offlineHackingIncome} />
                   </Typography>
                 </li>
                 <li>
-                  <Typography>Your Hacknet Nodes generated {hacknetProdInfo}</Typography>
+                  <Typography>{i18n.t('offline.d',{ns:'ui'})} {hacknetProdInfo}</Typography>
                 </li>
                 <li>
                   <Typography>
-                    You gained <Reputation reputation={offlineReputation} /> reputation divided amongst your factions
+                  {i18n.t('offline.e',{ns:'ui'})} <Reputation reputation={offlineReputation} /> {i18n.t('offline.f',{ns:'ui'})} 
                   </Typography>
                 </li>
               </ul>

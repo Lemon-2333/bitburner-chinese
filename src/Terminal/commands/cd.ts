@@ -4,9 +4,11 @@ import { BaseServer } from "../../Server/BaseServer";
 import { evaluateDirectoryPath, removeTrailingSlash } from "../DirectoryHelpers";
 import { containsFiles } from "../DirectoryServerHelpers";
 
+import i18n from '../../i18n'
+
 export function cd(args: (string | number | boolean)[], server: BaseServer): void {
   if (args.length > 1) {
-    Terminal.error("Incorrect number of arguments. Usage: cd [dir]");
+    Terminal.error(i18n.t('cd.error.usage',{ns:'command'}));
   } else {
     let dir = args.length === 1 ? args[0] + "" : "/";
 
@@ -19,7 +21,7 @@ export function cd(args: (string | number | boolean)[], server: BaseServer): voi
 
       evaledDir = evaluateDirectoryPath(dir, Terminal.cwd());
       if (evaledDir === null || evaledDir === "") {
-        Terminal.error("Invalid path. Failed to change directories");
+        Terminal.error(i18n.t('cd.error.no',{ns:'command'}));
         return;
       }
       if (Terminal.cwd().length > 1 && dir === "..") {
@@ -28,7 +30,7 @@ export function cd(args: (string | number | boolean)[], server: BaseServer): voi
       }
 
       if (!containsFiles(server, evaledDir)) {
-        Terminal.error("Invalid path. Failed to change directories");
+        Terminal.error(i18n.t('cd.error.no',{ns:'command'}));
         return;
       }
     }

@@ -9,6 +9,8 @@ import { Money } from "../ui/React/Money";
 import { DarkWebItem } from "./DarkWebItem";
 import { isCreateProgramWork } from "../Work/CreateProgramWork";
 
+import i18n from '../i18n'
+
 //Posts a "help" message if connected to DarkWeb
 export function checkIfConnectedToDarkweb(): void {
   const server = Player.getCurrentServer();
@@ -54,19 +56,19 @@ export function buyDarkwebItem(itemName: string): void {
 
   // return if invalid
   if (item === null) {
-    Terminal.error("Unrecognized item: " + itemName);
+    Terminal.error(i18n.t('buy.error.unrecognized', { ns: 'command' }) + itemName);
     return;
   }
 
   // return if the player already has it.
   if (Player.hasProgram(item.program)) {
-    Terminal.print("You already have the " + item.program + " program");
+    Terminal.print(i18n.t('buy.error.has.a', { ns: 'command' }) + item.program + i18n.t('buy.error.has.b', { ns: 'command' }));
     return;
   }
 
   // return if the player doesn't have enough money
   if (Player.money < item.price) {
-    Terminal.error("Not enough money to purchase " + item.program);
+    Terminal.error(i18n.t('buy.error.money', { ns: 'command' }) + item.program);
     return;
   }
 
@@ -80,7 +82,7 @@ export function buyDarkwebItem(itemName: string): void {
   }
 
   Terminal.print(
-    "You have purchased the " + item.program + " program. The new program can be found on your home computer.",
+    i18n.t('buy.finish.a', { ns: 'command' }) + item.program + i18n.t('buy.finish_b', { ns: 'command' }),
   );
 }
 
@@ -97,13 +99,13 @@ export function buyAllDarkwebItems(): void {
   }
 
   if (itemsToBuy.length === 0) {
-    Terminal.print("All available programs have been purchased already.");
+    Terminal.print(i18n.t('buy.error.all', { ns: 'command' }));
     return;
   }
 
   if (cost > Player.money) {
     Terminal.error(
-      "Not enough money to purchase remaining programs, " + numeralWrapper.formatMoney(cost) + " required",
+      i18n.t('buy.error.money_n.a', { ns: 'command' }) + numeralWrapper.formatMoney(cost) + i18n.t('buy.error.money_n.b', { ns: 'command' }),
     );
     return;
   }

@@ -45,6 +45,8 @@ import { Modal } from "../../ui/React/Modal";
 import libSource from "!!raw-loader!../NetscriptDefinitions.d.ts";
 import { TextField, Tooltip } from "@mui/material";
 
+import i18n from "../../i18n";
+
 interface IProps {
   // Map of filename -> code
   files: Record<string, string>;
@@ -632,7 +634,7 @@ export function Root(props: IProps): React.ReactElement {
 
     if (dirty(index)) {
       PromptEvent.emit({
-        txt: `Do you want to save changes to ${closingScript.fileName} on ${closingScript.hostname}?`,
+        txt: `${i18n.t('ScriptEditor.main.save_q.a',{ns:'ui'})}${closingScript.fileName} ${i18n.t('ScriptEditor.main.save_q.b',{ns:'ui'})} ${closingScript.hostname} ${i18n.t('ScriptEditor.main.save_q.c',{ns:'ui'})}`,
         resolve: (result: boolean | string) => {
           if (result) {
             // Save changes
@@ -887,9 +889,9 @@ export function Root(props: IProps): React.ReactElement {
 
         <Box display="flex" flexDirection="row" sx={{ m: 1 }} alignItems="center">
           <Button startIcon={<SettingsIcon />} onClick={() => setOptionsOpen(true)} sx={{ mr: 1 }}>
-            Options
+          {i18n.t('ScriptEditor.main.Options',{ns:'ui'})}
           </Button>
-          <Button onClick={beautify}>Beautify</Button>
+          <Button onClick={beautify}>{i18n.t('ScriptEditor.main.Beautify',{ns:'ui'})}</Button>
           <Button
             color={updatingRam ? "secondary" : "primary"}
             sx={{ mx: 1 }}
@@ -899,13 +901,13 @@ export function Root(props: IProps): React.ReactElement {
           >
             {ram}
           </Button>
-          <Button onClick={save}>Save (Ctrl/Cmd + s)</Button>
+          <Button onClick={save}>{i18n.t('ScriptEditor.main.Save',{ns:'ui'})} (Ctrl/Cmd + s)</Button>
           <Button sx={{ mx: 1 }} onClick={Router.toTerminal}>
-            Terminal (Ctrl/Cmd + b)
+          {i18n.t('slidebar.Terminal',{ns:'ui'})} (Ctrl/Cmd + b)
           </Button>
           <Typography>
             {" "}
-            <strong>Documentation:</strong>{" "}
+            <strong>{i18n.t('ScriptEditor.main.Documentation',{ns:'ui'})}:</strong>{" "}
             <Link target="_blank" href="https://bitburner.readthedocs.io/en/latest/index.html">
               Basic
             </Link>
@@ -967,11 +969,11 @@ export function Root(props: IProps): React.ReactElement {
         }}
       >
         <span style={{ color: Settings.theme.primary, fontSize: "20px", textAlign: "center" }}>
-          <Typography variant="h4">No open files</Typography>
+          <Typography variant="h4">{i18n.t('ScriptEditor.no.a',{ns:'ui'})}</Typography>
           <Typography variant="h5">
-            Use <code>nano FILENAME</code> in
+            {i18n.t('Use',{ns:'common'})} <code>{i18n.t('ScriptEditor.no.b',{ns:'ui'})}</code>
             <br />
-            the terminal to open files
+            {i18n.t('ScriptEditor.no.c',{ns:'ui'})}
           </Typography>
         </span>
       </div>

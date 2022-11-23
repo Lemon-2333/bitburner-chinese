@@ -170,10 +170,10 @@ export class Terminal {
     // Backdoor should take the same amount of time as hack
     const server = Player.getCurrentServer();
     if (server instanceof HacknetServer) {
-      this.error("Cannot backdoor this kind of server");
+      this.error(i18n.t('backdoor.error.kind',{ns:'command'}));
       return;
     }
-    if (!(server instanceof Server)) throw new Error("server should be normal server");
+    if (!(server instanceof Server)) throw new Error(String(i18n.t('backdoor.error.normal_n',{ns:'command'})));
     this.startAction(calculateHackingTime(server, Player) / 4, "b", server);
   }
 
@@ -296,10 +296,10 @@ export class Terminal {
   finishBackdoor(server: BaseServer, cancelled = false): void {
     if (!cancelled) {
       if (server instanceof HacknetServer) {
-        this.error("Cannot hack this kind of server");
+        this.error(i18n.t('backdoor.error.kind',{ns:'command'}));
         return;
       }
-      if (!(server instanceof Server)) throw new Error("server should be normal server");
+      if (!(server instanceof Server)) throw new Error(String(i18n.t('backdoor.error.normal_n',{ns:'command'})));
       server.backdoorInstalled = true;
       if (SpecialServers.WorldDaemon === server.hostname) {
         if (Player.bitNodeN == null) {
@@ -308,7 +308,7 @@ export class Terminal {
         Router.toBitVerse(false, false);
         return;
       }
-      this.print(`Backdoor on '${server.hostname}' successful!`);
+      this.print(`${i18n.t('backdoor.finish.a',{ns:'command'})}'${server.hostname}' ${i18n.t('backdoor.finish.b',{ns:'command'})}`);
     }
   }
 
@@ -317,25 +317,25 @@ export class Terminal {
       const isHacknet = currServ instanceof HacknetServer;
       this.print(currServ.hostname + ": ");
       const org = currServ.organizationName;
-      this.print("Organization name: " + (!isHacknet ? org : "player"));
+      this.print(i18n.t('analyze.finish_name',{ns:'command'}) + (!isHacknet ? org : "player"));
       const hasAdminRights = (!isHacknet && currServ.hasAdminRights) || isHacknet;
-      this.print("Root Access: " + (hasAdminRights ? "YES" : "NO"));
+      this.print(i18n.t('analyze.finish_root',{ns:'command'}) + (hasAdminRights ? "YES" : "NO"));
       const canRunScripts = hasAdminRights && currServ.maxRam > 0;
-      this.print("Can run scripts on this host: " + (canRunScripts ? "YES" : "NO"));
+      this.print(i18n.t('analyze.finish_run',{ns:'command'}) + (canRunScripts ? "YES" : "NO"));
       this.print("RAM: " + numeralWrapper.formatRAM(currServ.maxRam));
       if (currServ instanceof Server) {
-        this.print("Backdoor: " + (currServ.backdoorInstalled ? "YES" : "NO"));
+        this.print(i18n.t('analyze.finish_backdoor',{ns:'command'}) + (currServ.backdoorInstalled ? "YES" : "NO"));
         const hackingSkill = currServ.requiredHackingSkill;
-        this.print("Required hacking skill for hack() and backdoor: " + (!isHacknet ? hackingSkill : "N/A"));
+        this.print(i18n.t('analyze.finish_skill',{ns:'command'}) + (!isHacknet ? hackingSkill : "N/A"));
         const security = currServ.hackDifficulty;
-        this.print("Server security level: " + (!isHacknet ? numeralWrapper.formatServerSecurity(security) : "N/A"));
+        this.print(i18n.t('analyze.finish_security',{ns:'command'}) + (!isHacknet ? numeralWrapper.formatServerSecurity(security) : "N/A"));
         const hackingChance = calculateHackingChance(currServ, Player);
-        this.print("Chance to hack: " + (!isHacknet ? numeralWrapper.formatPercentage(hackingChance) : "N/A"));
+        this.print(i18n.t('analyze.finish_chance',{ns:'command'}) + (!isHacknet ? numeralWrapper.formatPercentage(hackingChance) : "N/A"));
         const hackingTime = calculateHackingTime(currServ, Player) * 1000;
-        this.print("Time to hack: " + (!isHacknet ? convertTimeMsToTimeElapsedString(hackingTime, true) : "N/A"));
+        this.print(i18n.t('analyze.finish_time',{ns:'command'}) + (!isHacknet ? convertTimeMsToTimeElapsedString(hackingTime, true) : "N/A"));
       }
       this.print(
-        `Total money available on server: ${
+        `${i18n.t('analyze.finish_money',{ns:'command'})} ${
           currServ instanceof Server ? numeralWrapper.formatMoney(currServ.moneyAvailable) : "N/A"
         }`,
       );
@@ -640,7 +640,7 @@ export class Terminal {
           if (commandArray.length === 1 && commandArray[0] == "help") {
             iTutorialNextStep();
           } else {
-            this.error("Bad command. Please follow the tutorial");
+            this.error(i18n.t('tutorial.error',{ns:'tutorial'}));
             return;
           }
           break;
@@ -648,7 +648,7 @@ export class Terminal {
           if (commandArray.length === 1 && commandArray[0] == "ls") {
             iTutorialNextStep();
           } else {
-            this.error("Bad command. Please follow the tutorial");
+            this.error(i18n.t('tutorial.error',{ns:'tutorial'}));
             return;
           }
           break;
@@ -656,7 +656,7 @@ export class Terminal {
           if (commandArray.length === 1 && commandArray[0] == "scan") {
             iTutorialNextStep();
           } else {
-            this.error("Bad command. Please follow the tutorial");
+            this.error(i18n.t('tutorial.error',{ns:'tutorial'}));
             return;
           }
           break;
@@ -664,7 +664,7 @@ export class Terminal {
           if (commandArray.length == 1 && commandArray[0] == "scan-analyze") {
             iTutorialNextStep();
           } else {
-            this.error("Bad command. Please follow the tutorial");
+            this.error(i18n.t('tutorial.error',{ns:'tutorial'}));
             return;
           }
           break;
@@ -672,7 +672,7 @@ export class Terminal {
           if (commandArray.length == 2 && commandArray[0] == "scan-analyze" && commandArray[1] === 2) {
             iTutorialNextStep();
           } else {
-            this.error("Bad command. Please follow the tutorial");
+            this.error(i18n.t('tutorial.error',{ns:'tutorial'}));
             return;
           }
           break;
@@ -688,7 +688,7 @@ export class Terminal {
               return;
             }
           } else {
-            this.error("Bad command. Please follow the tutorial");
+            this.error(i18n.t('tutorial.error',{ns:'tutorial'}));
             return;
           }
           break;
@@ -696,7 +696,7 @@ export class Terminal {
           if (commandArray.length === 1 && commandArray[0] === "analyze") {
             iTutorialNextStep();
           } else {
-            this.error("Bad command. Please follow the tutorial");
+            this.error(i18n.t('tutorial.error',{ns:'tutorial'}));
             return;
           }
           break;
@@ -704,7 +704,7 @@ export class Terminal {
           if (commandArray.length == 2 && commandArray[0] == "run" && commandArray[1] == "NUKE.exe") {
             iTutorialNextStep();
           } else {
-            this.error("Bad command. Please follow the tutorial");
+            this.error(i18n.t('tutorial.error',{ns:'tutorial'}));
             return;
           }
           break;
@@ -712,13 +712,13 @@ export class Terminal {
           if (commandArray.length == 1 && commandArray[0] == "hack") {
             iTutorialNextStep();
           } else {
-            this.error("Bad command. Please follow the tutorial");
+            this.error(i18n.t('tutorial.error',{ns:'tutorial'}));
             return;
           }
           break;
         case iTutorialSteps.TerminalHackingMechanics:
           if (commandArray.length !== 1 || !["grow", "weaken", "hack"].includes(commandArray[0] + "")) {
-            this.error("Bad command. Please follow the tutorial");
+            this.error(i18n.t('tutorial.error',{ns:'tutorial'}));
             return;
           }
           break;
@@ -726,7 +726,7 @@ export class Terminal {
           if (commandArray.length == 1 && commandArray[0] == "home") {
             iTutorialNextStep();
           } else {
-            this.error("Bad command. Please follow the tutorial");
+            this.error(i18n.t('tutorial.error',{ns:'tutorial'}));
             return;
           }
           break;
@@ -738,7 +738,7 @@ export class Terminal {
           ) {
             iTutorialNextStep();
           } else {
-            this.error("Bad command. Please follow the tutorial");
+            this.error(i18n.t('tutorial.error',{ns:'tutorial'}));
             return;
           }
           break;
@@ -746,7 +746,7 @@ export class Terminal {
           if (commandArray.length == 1 && commandArray[0] == "free") {
             iTutorialNextStep();
           } else {
-            this.error("Bad command. Please follow the tutorial");
+            this.error(i18n.t('tutorial.error',{ns:'tutorial'}));
             return;
           }
           break;
@@ -758,7 +758,7 @@ export class Terminal {
           ) {
             iTutorialNextStep();
           } else {
-            this.error("Bad command. Please follow the tutorial");
+            this.error(i18n.t('tutorial.error',{ns:'tutorial'}));
             return;
           }
           break;
@@ -770,12 +770,12 @@ export class Terminal {
           ) {
             iTutorialNextStep();
           } else {
-            this.error("Bad command. Please follow the tutorial");
+            this.error(i18n.t('tutorial.error',{ns:'tutorial'}));
             return;
           }
           break;
         default:
-          this.error("Please follow the tutorial, or click 'EXIT' if you'd like to skip it");
+          this.error(i18n.t('tutorial.error_a',{ns:'tutorial'}));
           return;
       }
     }

@@ -30,6 +30,8 @@ import {
 } from "../../InteractiveTutorial";
 import { NSSelection } from "./NSSelection";
 
+import i18n from '../../i18n'
+
 interface IContent {
   content: React.ReactElement;
   canNext: boolean;
@@ -70,14 +72,13 @@ export function InteractiveTutorialRoot(): React.ReactElement {
       content: (
         <>
           <Typography>
-            Welcome to Bitburner, a cyberpunk-themed incremental RPG! The game takes place in a dark, dystopian
-            future... The year is 2077...
+            {i18n.t('tutorial.welcome.a',{ns:"tutorial"})}
             <br />
             <br />
-            This tutorial will show you the basics of the game. You may skip the tutorial at any time.
+            {i18n.t('tutorial.welcome.b',{ns:"tutorial"})}
             <br />
             <br />
-            You can also collapse this panel to temporarily hide this tutorial.
+            {i18n.t('tutorial.welcome.c',{ns:"tutorial"})}
           </Typography>
         </>
       ),
@@ -86,21 +87,20 @@ export function InteractiveTutorialRoot(): React.ReactElement {
     [iTutorialSteps.NSSelection as number]: {
       content: (
         <>
-          <Typography>The tutorial will adjust to your programming ability.</Typography>
-          <Typography>Bitburner has 2 types of scripts:</Typography>
+          <Typography>{i18n.t('tutorial.NSSelection.a',{ns:'tutorial'})}</Typography>
+          <Typography>{i18n.t('tutorial.NSSelection.b',{ns:'tutorial'})}</Typography>
           <List>
             <ListItem>
-              <Typography>NS1: Javascript from 2009, very simple. Recommended for beginners to programming.</Typography>
+              <Typography>{i18n.t('tutorial.NSSelection.c',{ns:'tutorial'})}</Typography>
             </ListItem>
             <ListItem>
               <Typography>
-                NS2: Native, modern Javascript. Recommended if you know any programming language or are serious about
-                learning programming.
+              {i18n.t('tutorial.NSSelection.d',{ns:'tutorial'})}
               </Typography>
             </ListItem>
           </List>
           <Typography>
-            Both are available at all time and interchangeably. This choice is only for the tutorial.
+          {i18n.t('tutorial.NSSelection.e',{ns:'tutorial'})}
           </Typography>
           <Button
             onClick={() => {
@@ -108,7 +108,7 @@ export function InteractiveTutorialRoot(): React.ReactElement {
               iTutorialNextStep();
             }}
           >
-            Use NS1
+            {i18n.t('tutorial.NSSelection.NS1',{ns:'tutorial'})}
           </Button>
           <Button
             onClick={() => {
@@ -116,9 +116,9 @@ export function InteractiveTutorialRoot(): React.ReactElement {
               iTutorialNextStep();
             }}
           >
-            Use NS2
+            {i18n.t('tutorial.NSSelection.NS2',{ns:'tutorial'})}
           </Button>
-          <Button onClick={() => setNSSelectionOpen(true)}>More info</Button>
+          <Button onClick={() => setNSSelectionOpen(true)}>{i18n.t('tutorial.NSSelection.info',{ns:'tutorial'})}</Button>
           <br />
         </>
       ),
@@ -127,13 +127,13 @@ export function InteractiveTutorialRoot(): React.ReactElement {
     [iTutorialSteps.GoToCharacterPage as number]: {
       content: (
         <>
-          <Typography>Let's start by heading to the Stats page. Click</Typography>
+          <Typography>{i18n.t('tutorial.GoToCharacterPage.a',{ns:"tutorial"})}</Typography>
           <ListItem>
             <EqualizerIcon color={"error"} />
-            <Typography color={"error"}>Stats</Typography>
+            <Typography color={"error"}>{i18n.t('slidebar.Stats',{ns:"ui"})}</Typography>
           </ListItem>
 
-          <Typography>on the main navigation menu (left-hand side of the screen)</Typography>
+          <Typography>{i18n.t('tutorial.GoToCharacterPage.c',{ns:"tutorial"})}</Typography>
         </>
       ),
       canNext: false,
@@ -143,10 +143,10 @@ export function InteractiveTutorialRoot(): React.ReactElement {
         <>
           <ListItem>
             <EqualizerIcon color={"primary"} />
-            <Typography color={"primary"}>Stats</Typography>
+            <Typography color={"primary"}>{i18n.t('slidebar.Stats',{ns:"ui"})}</Typography>
           </ListItem>
           <Typography>
-            shows a lot of important information about your progress, such as your skills, money, and bonuses.
+          {i18n.t('tutorial.GoToCharacterPage.d',{ns:"tutorial"})}
           </Typography>
         </>
       ),
@@ -155,12 +155,12 @@ export function InteractiveTutorialRoot(): React.ReactElement {
     [iTutorialSteps.CharacterGoToTerminalPage as number]: {
       content: (
         <>
-          <Typography>Let's head to your computer's terminal by clicking</Typography>
+          <Typography>{i18n.t('tutorial.CharacterGoToTerminalPage.a',{ns:"tutorial"})}</Typography>
           <ListItem>
             <LastPageIcon color={"error"} />
-            <Typography color={"error"}>Terminal</Typography>
+            <Typography color={"error"}>{i18n.t('slidebar.Terminal',{ns:"ui"})}</Typography>
           </ListItem>
-          <Typography>on the main navigation menu.</Typography>
+          <Typography>{i18n.t('tutorial.CharacterGoToTerminalPage.c',{ns:"tutorial"})}</Typography>
         </>
       ),
       canNext: false,
@@ -170,10 +170,10 @@ export function InteractiveTutorialRoot(): React.ReactElement {
         <>
           <ListItem>
             <LastPageIcon color={"primary"} />
-            <Typography color={"primary"}>Terminal</Typography>
+            <Typography color={"primary"}>{i18n.t('slidebar.Terminal',{ns:"ui"})}</Typography>
           </ListItem>
           <Typography>
-            is used to interface with your home computer as well as all of the other machines around the world.
+          {i18n.t('tutorial.TerminalIntro.a',{ns:"tutorial"})}
           </Typography>
         </>
       ),
@@ -182,9 +182,9 @@ export function InteractiveTutorialRoot(): React.ReactElement {
     [iTutorialSteps.TerminalHelp as number]: {
       content: (
         <>
-          <Typography>Let's try it out. Start by entering</Typography>
+          <Typography>{i18n.t('tutorial.TerminalHelp.a',{ns:"tutorial"})}</Typography>
           <Typography classes={{ root: classes.textfield }}>{"[home ~/]> help"}</Typography>
-          <Typography>(Don't forget to press Enter after typing the command)</Typography>
+          <Typography>{i18n.t('tutorial.TerminalHelp.b',{ns:"tutorial"})}</Typography>
         </>
       ),
       canNext: false,
@@ -194,10 +194,10 @@ export function InteractiveTutorialRoot(): React.ReactElement {
         <>
           <Typography classes={{ root: classes.textfield }}>{"[home ~/]> help"}</Typography>
           <Typography>
-            displays a list of all available Terminal commands, how to use them, and a description of what they do.{" "}
+          {i18n.t('tutorial.TerminalLs.a',{ns:"tutorial"})}{" "}
             <br />
             <br />
-            Let's try another command. Enter
+            {i18n.t('tutorial.TerminalLs.b',{ns:"tutorial"})}
           </Typography>
 
           <Typography classes={{ root: classes.textfield }}>{"[home ~/]> ls"}</Typography>
@@ -211,11 +211,10 @@ export function InteractiveTutorialRoot(): React.ReactElement {
           <Typography classes={{ root: classes.textfield }}>{"[home ~/]> ls"}</Typography>
           <Typography>
             {" "}
-            is a basic command that shows files on the computer. Right now, it shows that you have a program called{" "}
-            NUKE.exe on your computer. We'll get to what this does later. <br />
+            {i18n.t('tutorial.TerminalScan.a',{ns:"tutorial"})}{" "}
+            {i18n.t('tutorial.TerminalScan.b',{ns:"tutorial"})} <br />
             <br />
-            Using your home computer's terminal, you can connect to other machines throughout the world. Let's do that
-            now by first entering
+            {i18n.t('tutorial.TerminalScan.c',{ns:"tutorial"})}
           </Typography>
           <Typography classes={{ root: classes.textfield }}>{"[home ~/]> scan"}</Typography>
         </>
@@ -227,14 +226,13 @@ export function InteractiveTutorialRoot(): React.ReactElement {
         <>
           <Typography classes={{ root: classes.textfield }}>{"[home ~/]> scan"}</Typography>
           <Typography>
-            shows all available network connections. In other words, it displays a list of all servers that can be
-            connected to from your current machine. A server is identified by its hostname. <br />
+          {i18n.t('tutorial.TerminalScanAnalyze1.a',{ns:"tutorial"})}<br />
             <br />
-            That's great and all, but there's so many servers. Which one should you go to?{" "}
+            {i18n.t('tutorial.TerminalScanAnalyze1.b',{ns:"tutorial"})}{" "}
           </Typography>
 
           <Typography classes={{ root: classes.textfield }}>{"[home ~/]> scan-analyze"}</Typography>
-          <Typography>gives some more detailed information about servers on the network. Try it now!</Typography>
+          <Typography>{i18n.t('tutorial.TerminalScanAnalyze1.c',{ns:"tutorial"})}</Typography>
         </>
       ),
       canNext: false,
@@ -244,10 +242,8 @@ export function InteractiveTutorialRoot(): React.ReactElement {
         <>
           <Typography classes={{ root: classes.textfield }}>{"[home ~/]> scan-analyze"}</Typography>
           <Typography>
-            shows more detailed information about each server that you can connect to (servers that are a distance of
-            one node away). <br />
-            <br /> It is also possible to run scan-analyze with a higher depth. Let's try a depth of two with the
-            following command:{" "}
+          {i18n.t('tutorial.TerminalScanAnalyze2.a',{ns:"tutorial"})} <br />
+            <br />{i18n.t('tutorial.TerminalScanAnalyze2.b',{ns:"tutorial"})}{" "}
           </Typography>
 
           <Typography classes={{ root: classes.textfield }}>{"[home ~/]> scan-analyze 2"}</Typography>
@@ -259,18 +255,16 @@ export function InteractiveTutorialRoot(): React.ReactElement {
       content: (
         <>
           <Typography>
-            Now you can see information about all servers that are up to two nodes away, as well as figure out how to
-            navigate to those servers through the network. You can only connect to a server that is one node away. To
-            connect to a machine, use
+          {i18n.t('tutorial.TerminalConnect.a',{ns:"tutorial"})}
           </Typography>
           <Typography classes={{ root: classes.textfield }}>{"[home ~/]> connect hostname"}</Typography>
 
-          <Typography>From the results of </Typography>
+          <Typography>{i18n.t('tutorial.TerminalConnect.b',{ns:"tutorial"})}</Typography>
           <Typography classes={{ root: classes.textfield }}>{"[home ~/]> scan-analyze 2"}</Typography>
 
           <Typography>
             {" "}
-            we can see that the n00dles server is only one node away. Let's connect to it now using:
+            {i18n.t('tutorial.TerminalConnect.c',{ns:"tutorial"})}
           </Typography>
 
           <Typography classes={{ root: classes.textfield }}>{"[home ~/]> connect n00dles"}</Typography>
@@ -282,13 +276,11 @@ export function InteractiveTutorialRoot(): React.ReactElement {
       content: (
         <>
           <Typography>
-            You are now connected to another machine! What can you do now? You can hack it!
+          {i18n.t('tutorial.TerminalAnalyze.a',{ns:"tutorial"})}
             <br />
-            <br /> In the year 2077, currency has become digital and decentralized. People and corporations store their
-            money on servers and computers. Using your hacking abilities, you can hack servers to steal money and gain
-            experience. <br />
+            <br />{i18n.t('tutorial.TerminalAnalyze.b',{ns:"tutorial"})}<br />
             <br />
-            Before you try to hack a server, you should run diagnostics using{" "}
+            {i18n.t('tutorial.TerminalAnalyze.c',{ns:"tutorial"})}{" "}
           </Typography>
           <Typography classes={{ root: classes.textfield }}>{"[n00dles ~/]> analyze"}</Typography>
         </>
@@ -298,22 +290,18 @@ export function InteractiveTutorialRoot(): React.ReactElement {
     [iTutorialSteps.TerminalNuke as number]: {
       content: (
         <>
-          <Typography>When </Typography>
+          <Typography>{i18n.t('tutorial.TerminalNuke.a',{ns:"tutorial"})}</Typography>
           <Typography classes={{ root: classes.textfield }}>{"[n00dles ~/]> analyze"}</Typography>
 
           <Typography>
-            finishes running it will show useful information about hacking the server. <br />
-            <br /> For this server, the required hacking skill is only 1, which means you can hack it right now.
-            However, in order to hack a server you must first gain root access. The NUKE.exe program that we saw earlier
-            on your home computer is a virus that will grant you root access to a machine if there are enough open
-            ports.
+          {i18n.t('tutorial.TerminalNuke.b',{ns:"tutorial"})}<br />
+            <br />{i18n.t('tutorial.TerminalNuke.c',{ns:"tutorial"})}
           </Typography>
           <Typography classes={{ root: classes.textfield }}>{"[n00dles ~/]> analyze"}</Typography>
 
           <Typography>
             {" "}
-            shows that there do not need to be any open ports on this machine for the NUKE virus to work, so go ahead
-            and run the virus using{" "}
+            {i18n.t('tutorial.TerminalNuke.d',{ns:"tutorial"})}{" "}
           </Typography>
           <Typography classes={{ root: classes.textfield }}>{"[n00dles ~/]> run NUKE.exe"}</Typography>
 
@@ -325,10 +313,10 @@ export function InteractiveTutorialRoot(): React.ReactElement {
     [iTutorialSteps.TerminalManualHack as number]: {
       content: (
         <>
-          <Typography>You now have root access! You can hack the server using </Typography>
+          <Typography>{i18n.t('tutorial.TerminalManualHack.a',{ns:"tutorial"})} </Typography>
           <Typography classes={{ root: classes.textfield }}>{"[n00dles ~/]> hack"}</Typography>
 
-          <Typography> Try doing that now.</Typography>
+          <Typography>{i18n.t('tutorial.TerminalManualHack.b',{ns:"tutorial"})}</Typography>
         </>
       ),
       canNext: true,
@@ -336,21 +324,17 @@ export function InteractiveTutorialRoot(): React.ReactElement {
     [iTutorialSteps.TerminalHackingMechanics as number]: {
       content: (
         <Typography>
-          You are now attempting to hack the server. Performing a hack takes time and only has a certain percentage
-          chance of success. This time and success chance is determined by a variety of factors, including your hacking
-          skill and the server's security level.
+          {i18n.t('tutorial.TerminalHackingMechanics.a',{ns:"tutorial"})}
           <br />
           <br />
-          If your attempt to hack the server is successful, you will steal a certain percentage of the server's total
-          money. This percentage is affected by your hacking skill and the server's security level.
+          {i18n.t('tutorial.TerminalHackingMechanics.b',{ns:"tutorial"})}
           <br />
           <br />
-          The amount of money on a server is not limitless. So, if you constantly hack a server and deplete its money,
-          then you will encounter diminishing returns in your hacking. You will need to use{" "}
+          {i18n.t('tutorial.TerminalHackingMechanics.c',{ns:"tutorial"})}{" "}
           <Typography classes={{ root: classes.textfield }}>{"[n00dles ~/]> grow"}</Typography>
-          which tricks the company into adding money to their server and{" "}
+          {i18n.t('tutorial.TerminalHackingMechanics.d',{ns:"tutorial"})}{" "}
           <Typography classes={{ root: classes.textfield }}>{"[n00dles ~/]> weaken"}</Typography>
-          which increases the speed of hack and grow.
+          {i18n.t('tutorial.TerminalHackingMechanics.e',{ns:"tutorial"})}
         </Typography>
       ),
       canNext: true,
@@ -358,10 +342,10 @@ export function InteractiveTutorialRoot(): React.ReactElement {
     [iTutorialSteps.TerminalGoHome as number]: {
       content: (
         <>
-          <Typography>From any server you can get back home using</Typography>
+          <Typography>{i18n.t('tutorial.TerminalGoHome.a',{ns:"tutorial"})}</Typography>
           <Typography classes={{ root: classes.textfield }}>{"[n00dles ~/]> home"}</Typography>
 
-          <Typography>Let's head home before creating our first script!</Typography>
+          <Typography>{i18n.t('tutorial.TerminalGoHome.b',{ns:"tutorial"})}</Typography>
         </>
       ),
       canNext: true,
@@ -370,21 +354,22 @@ export function InteractiveTutorialRoot(): React.ReactElement {
       content: (
         <>
           <Typography>
-            Hacking is the core mechanic of the game and is necessary for progressing. However, you don't want to be
-            hacking manually the entire time. You can automate your hacking by writing scripts!
+          {i18n.t('tutorial.TerminalCreateScript.a',{ns:"tutorial"})}
             <br />
             <br />
-            To create a new script or edit an existing one, you can use{" "}
+            {i18n.t('tutorial.TerminalCreateScript.b',{ns:"tutorial"})}{" "}
           </Typography>
           <Typography classes={{ root: classes.textfield }}>{"[home ~/]> nano"}</Typography>
 
           <Typography>
-            Scripts must end with the {tutorialScriptExtension} extension. Let's make a script now by entering{" "}
+          {i18n.t('tutorial.TerminalCreateScript.c',{ns:"tutorial"})}
+          {tutorialScriptExtension}
+          {i18n.t('tutorial.TerminalCreateScript.e',{ns:"tutorial"})}{" "}
           </Typography>
           <Typography classes={{ root: classes.textfield }}>{`[home ~/]> nano ${tutorialScriptName}`}</Typography>
 
           <Typography>
-            after the hack command finishes running (Sidenote: Pressing ctrl + c will end a command like hack early)
+          {i18n.t('tutorial.TerminalCreateScript.d',{ns:"tutorial"})}
           </Typography>
         </>
       ),
@@ -394,9 +379,8 @@ export function InteractiveTutorialRoot(): React.ReactElement {
       content: (
         <>
           <Typography>
-            This is the script editor. You can use it to program your scripts.{" "}
-            {language !== Language.NS2 && <>Scripts are written in a simplified version of javascript.</>} Copy and
-            paste the following code into the script editor: <br />
+          {i18n.t('tutorial.TerminalTypeScript.a',{ns:"tutorial"})}{" "}
+            {language !== Language.NS2 && <>{i18n.t('tutorial.TerminalTypeScript.b',{ns:"tutorial"})}</>}{i18n.t('tutorial.TerminalTypeScript.c',{ns:"tutorial"})}<br />
           </Typography>
 
           <Typography classes={{ root: classes.code }}>
@@ -418,11 +402,10 @@ export function InteractiveTutorialRoot(): React.ReactElement {
             )}
           </Typography>
           <Typography>
-            For anyone with basic programming experience, this code should be straightforward. This script will
-            continuously hack the n00dles server.
+          {i18n.t('tutorial.TerminalTypeScript.d',{ns:"tutorial"})}
             <br />
             <br />
-            To save and close the script editor, press the button in the bottom left, or press ctrl + s then ctrl + b.
+            {i18n.t('tutorial.TerminalTypeScript.e',{ns:"tutorial"})}
           </Typography>
         </>
       ),
@@ -432,12 +415,10 @@ export function InteractiveTutorialRoot(): React.ReactElement {
       content: (
         <>
           <Typography>
-            Now we'll run the script. Scripts require a certain amount of RAM to run, and can be run on any machine
-            which you have root access to. Different servers have different amounts of RAM. You can also purchase more
-            RAM for your home server.
+          {i18n.t('tutorial.TerminalFree.a',{ns:"tutorial"})}
             <br />
             <br />
-            To check how much RAM is available on this machine, enter
+            {i18n.t('tutorial.TerminalFree.b',{ns:"tutorial"})}
           </Typography>
           <Typography classes={{ root: classes.textfield }}>{"[home ~/]> free"}</Typography>
         </>
@@ -448,7 +429,7 @@ export function InteractiveTutorialRoot(): React.ReactElement {
       content: (
         <>
           <Typography>
-            We have 4GB of free RAM on this machine, which is enough to run our script. Let's run our script using
+          {i18n.t('tutorial.TerminalRunScript.a',{ns:"tutorial"})}
           </Typography>
           <Typography classes={{ root: classes.textfield }}>{`[home ~/]> run ${tutorialScriptName}`}</Typography>
         </>
@@ -459,17 +440,15 @@ export function InteractiveTutorialRoot(): React.ReactElement {
       content: (
         <>
           <Typography>
-            Your script is now running! It will continuously run in the background and will automatically stop if the
-            code ever completes (the {tutorialScriptName} will never complete because it runs an infinite loop). <br />
+          {i18n.t('tutorial.TerminalGoToActiveScriptsPage.a',{ns:"tutorial"})}{tutorialScriptName}{i18n.t('tutorial.TerminalGoToActiveScriptsPage.b',{ns:"tutorial"})}<br />
             <br />
-            These scripts can passively earn you income and hacking experience. Your scripts will also earn money and
-            experience while you are offline, although at a slightly slower rate. <br />
+            {i18n.t('tutorial.TerminalGoToActiveScriptsPage.c',{ns:"tutorial"})}<br />
             <br />
-            Let's check out some statistics for our running scripts by clicking{" "}
+            {i18n.t('tutorial.TerminalGoToActiveScriptsPage.d',{ns:"tutorial"})}{" "}
           </Typography>
           <ListItem>
             <StorageIcon color={"error"} />
-            <Typography color={"error"}>Active Scripts</Typography>
+            <Typography color={"error"}>{i18n.t('slidebar.ActiveScripts',{ns:'ui'})}</Typography>
           </ListItem>
         </>
       ),
@@ -479,12 +458,11 @@ export function InteractiveTutorialRoot(): React.ReactElement {
       content: (
         <>
           <Typography>
-            This page displays information about all of your scripts that are running across every server. You can use
-            this to gauge how well your scripts are doing. Let's go back to
+          {i18n.t('tutorial.ActiveScriptsPage.a',{ns:"tutorial"})}
           </Typography>
           <ListItem>
             <LastPageIcon color={"error"} />
-            <Typography color={"error"}>Terminal</Typography>
+            <Typography color={"error"}>{i18n.t('slidebar.Terminal',{ns:'ui'})}</Typography>
           </ListItem>
         </>
       ),
@@ -494,8 +472,7 @@ export function InteractiveTutorialRoot(): React.ReactElement {
       content: (
         <>
           <Typography>
-            One last thing about scripts, each active script contains logs that detail what it's doing. We can check
-            these logs using the tail command. Do that now for the script we just ran by typing{" "}
+          {i18n.t('tutorial.ActiveScriptsToTerminal.a',{ns:"tutorial"})}{" "}
           </Typography>
           <Typography classes={{ root: classes.textfield }}>{`[home ~/]> tail ${tutorialScriptName}`}</Typography>
         </>
@@ -506,20 +483,19 @@ export function InteractiveTutorialRoot(): React.ReactElement {
       content: (
         <>
           <Typography>
-            The log for this script won't show much right now (it might show nothing at all) because it just started
-            running...but check back again in a few minutes! <br />
+          {i18n.t('tutorial.TerminalTailScript.a',{ns:"tutorial"})}<br />
             <br />
-            This covers the basics of hacking. To learn more about writing scripts, select
+            {i18n.t('tutorial.TerminalTailScript.b',{ns:"tutorial"})}
           </Typography>
           <ListItem>
             <HelpIcon color={"primary"} />
-            <Typography color={"primary"}>Tutorial</Typography>
+            <Typography color={"primary"}>{i18n.t('slidebar.Tutorial',{ns:'ui'})}</Typography>
           </ListItem>
           <Typography>
-            in the main navigation menu to look at the documentation.
+          {i18n.t('tutorial.TerminalTailScript.c',{ns:"tutorial"})}
             <br />
             <br />
-            For now, let's move on to something else!
+            {i18n.t('tutorial.TerminalTailScript.d',{ns:"tutorial"})}
           </Typography>
         </>
       ),
@@ -529,14 +505,13 @@ export function InteractiveTutorialRoot(): React.ReactElement {
       content: (
         <>
           <Typography>
-            Hacking is not the only way to earn money. One other way to passively earn money is by purchasing and
-            upgrading Hacknet Nodes. Let's go to
+          {i18n.t('tutorial.GoToHacknetNodesPage.d',{ns:"tutorial"})}
           </Typography>
           <ListItem>
             <AccountTreeIcon color={"error"} />
-            <Typography color={"error"}>Hacknet</Typography>
+            <Typography color={"error"}>{i18n.t('slidebar.Hacknet',{ns:'ui'})}</Typography>
           </ListItem>
-          <Typography>through the main navigation menu now.</Typography>
+          <Typography>{i18n.t('tutorial.GoToHacknetNodesPage.d',{ns:"tutorial"})}</Typography>
         </>
       ),
       canNext: true,
@@ -544,7 +519,7 @@ export function InteractiveTutorialRoot(): React.ReactElement {
     [iTutorialSteps.HacknetNodesIntroduction as number]: {
       content: (
         <Typography>
-          Here you can purchase new Hacknet Nodes and upgrade your existing ones. Let's purchase a new one now.
+          {i18n.t('tutorial.HacknetNodesIntroduction.a',{ns:"tutorial"})}
         </Typography>
       ),
       canNext: true,
@@ -553,15 +528,14 @@ export function InteractiveTutorialRoot(): React.ReactElement {
       content: (
         <>
           <Typography>
-            You just purchased a Hacknet Node! This Hacknet Node will passively earn you money over time, both online
-            and offline. When you get enough money, you can upgrade your newly-purchased Hacknet Node below.
+          {i18n.t('tutorial.HacknetNodesGoToWorldPage.a',{ns:"tutorial"})}
             <br />
             <br />
-            Let's go to
+            {i18n.t('tutorial.HacknetNodesGoToWorldPage.b',{ns:"tutorial"})}
           </Typography>
           <ListItem>
             <LocationCityIcon color={"error"} />
-            <Typography color={"error"}>City</Typography>
+            <Typography color={"error"}>{i18n.t('slidebar.City',{ns:'ui'})}</Typography>
           </ListItem>
         </>
       ),
@@ -571,15 +545,14 @@ export function InteractiveTutorialRoot(): React.ReactElement {
       content: (
         <>
           <Typography>
-            This page lists all of the different locations you can currently travel to. Each location has something that
-            you can do. There's a lot of content out in the world, make sure you explore and discover!
+            {i18n.t('tutorial.WorldDescription.a',{ns:"tutorial"})}
             <br />
             <br />
-            Lastly, click on
+            {i18n.t('tutorial.WorldDescription.b',{ns:"tutorial"})}
           </Typography>
           <ListItem>
             <HelpIcon color={"error"} />
-            <Typography color={"error"}>Tutorial</Typography>
+            <Typography color={"error"}>{i18n.t('slidebar.Tutorial',{ns:'ui'})}</Typography>
           </ListItem>
         </>
       ),
@@ -588,9 +561,7 @@ export function InteractiveTutorialRoot(): React.ReactElement {
     [iTutorialSteps.TutorialPageInfo as number]: {
       content: (
         <Typography>
-          This page contains a lot of different documentation about the game's content and mechanics. I know it's a lot,
-          but I highly suggest you read (or at least skim) through this before you start playing . That's the end of the
-          tutorial. Hope you enjoy the game!
+          {i18n.t('tutorial.TutorialPageInfo.a',{ns:"tutorial"})}
         </Typography>
       ),
       canNext: true,
@@ -634,7 +605,7 @@ export function InteractiveTutorialRoot(): React.ReactElement {
         <br />
         <br />
         <Button onClick={iTutorialEnd}>
-          {step !== iTutorialSteps.TutorialPageInfo ? "SKIP TUTORIAL" : "FINISH TUTORIAL"}
+          {step !== iTutorialSteps.TutorialPageInfo ? i18n.t('tutorial.gl.a',{ns:"tutorial"}) : i18n.t('tutorial.gl.b',{ns:"tutorial"})}
         </Button>
       </Paper>
     </>

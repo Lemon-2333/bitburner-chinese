@@ -14,6 +14,8 @@ import SaveIcon from "@mui/icons-material/Save";
 
 import { ThemeEditorModal } from "./ThemeEditorModal";
 
+import i18n from "../../i18n";
+
 interface IProps {
   options: Options;
   save: (options: Options) => void;
@@ -50,7 +52,7 @@ export function OptionsModal(props: IProps): React.ReactElement {
     <Modal open={props.open} onClose={props.onClose}>
       <ThemeEditorModal open={themeEditorOpen} onClose={() => setThemeEditorOpen(false)} />
       <Box display="flex" flexDirection="row" alignItems="center">
-        <Typography>Theme: </Typography>
+        <Typography>{i18n.t('ScriptEditor.Option.Theme',{ns:'ui'})}: </Typography>
         <Select onChange={(event) => setTheme(event.target.value)} value={theme}>
           <MenuItem value="monokai">monokai</MenuItem>
           <MenuItem value="solarized-dark">solarized-dark</MenuItem>
@@ -62,27 +64,27 @@ export function OptionsModal(props: IProps): React.ReactElement {
           <MenuItem value="customTheme">Custom theme</MenuItem>
         </Select>
         <Button onClick={() => setThemeEditorOpen(true)} sx={{ mx: 1 }} startIcon={<EditIcon />}>
-          Edit custom theme
+        {i18n.t('ScriptEditor.Option.CustomTheme',{ns:'ui'})}
         </Button>
       </Box>
 
       <Box display="flex" flexDirection="row" alignItems="center">
-        <Typography>Use whitespace over tabs: </Typography>
+        <Typography>{i18n.t('ScriptEditor.Option.tab',{ns:'ui'})}: </Typography>
         <Switch onChange={(event) => setInsertSpaces(event.target.checked)} checked={insertSpaces} />
       </Box>
 
       <Box display="flex" flexDirection="row" alignItems="center">
-        <Typography>Word Wrap: </Typography>
+        <Typography>{i18n.t('ScriptEditor.Option.wrap',{ns:'ui'})}: </Typography>
         <Select onChange={(event) => setWordWrap(event.target.value as WordWrapOptions)} value={wordWrap}>
-          <MenuItem value={"off"}>Off</MenuItem>
-          <MenuItem value={"on"}>On</MenuItem>
-          <MenuItem value={"bounded"}>Bounded</MenuItem>
-          <MenuItem value={"wordWrapColumn"}>Word Wrap Column</MenuItem>
+          <MenuItem value={"off"}>{i18n.t('Off',{ns:'common'})}</MenuItem>
+          <MenuItem value={"on"}>{i18n.t('On',{ns:'common'})}</MenuItem>
+          <MenuItem value={"bounded"}>{i18n.t('ScriptEditor.Option.Bounded',{ns:'ui'})}</MenuItem>
+          <MenuItem value={"wordWrapColumn"}>{i18n.t('ScriptEditor.Option.column',{ns:'ui'})}</MenuItem>
         </Select>
       </Box>
 
       <Box display="flex" flexDirection="row" alignItems="center">
-        <Typography>Enable vim mode: </Typography>
+        <Typography>{i18n.t('ScriptEditor.Option.vim',{ns:'ui'})}: </Typography>
         <Switch onChange={(event) => setVim(event.target.checked)} checked={vim} />
       </Box>
 

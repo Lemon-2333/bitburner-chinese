@@ -37,3 +37,11 @@ Contributor's License Agreement will be drawn up in the future.
 
 If you would like to make significant contributions to the project as a
 collaborator, please reach out to @danielyxie to help coordinate the effort.
+
+# If error
+
+Linux:
+```export NODE_OPTIONS=--openssl-legacy-provider```
+Windows:
+```set NODE_OPTIONS=--openssl-legacy-provider```
+Because the translated text is too large

@@ -24,5 +24,5 @@ export function alias(args: (string | number | boolean)[]): void {
   }
   console.log(i18n)
   Terminal.error(i18n.t('alias.error', { ns: 'command' }));
-  Terminal.error('Incorrect usage of alias command. Usage: alias [-g] [aliasname="value"]');
+  //Terminal.error('Incorrect usage of alias command. Usage: alias [-g] [aliasname="value"]');
 }

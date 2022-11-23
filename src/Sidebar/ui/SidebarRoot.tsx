@@ -59,6 +59,8 @@ import { InvitationsSeen } from "../../Faction/ui/FactionsRoot";
 import { hash } from "../../hash/hash";
 import { Locations } from "../../Locations/Locations";
 
+import i18n from '../../i18n'
+
 const openedMixin = (theme: Theme): CSSObject => ({
   width: theme.spacing(31),
   transition: theme.transitions.create("width", {
@@ -361,7 +363,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
               <ComputerIcon color="primary" />
             </Tooltip>
           </ListItemIcon>
-          <ListItemText primary={<Typography>Hacking</Typography>} />
+          <ListItemText primary={<Typography>{i18n.t('slidebar.Hacking',{ns:'ui'})}</Typography>} />
           {hackingOpen ? <ExpandLessIcon color="primary" /> : <ExpandMoreIcon color="primary" />}
         </ListItem>
         <Collapse in={hackingOpen} timeout="auto" unmountOnExit>
@@ -384,7 +386,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
               </ListItemIcon>
               <ListItemText>
                 <Typography color={flashTerminal ? "error" : props.page !== Page.Terminal ? "secondary" : "primary"}>
-                  Terminal
+                {i18n.t('slidebar.Terminal',{ns:'ui'})}
                 </Typography>
               </ListItemText>
             </ListItem>
@@ -404,7 +406,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
               </ListItemIcon>
               <ListItemText>
                 <Typography color={props.page !== Page.ScriptEditor ? "secondary" : "primary"}>
-                  Script Editor
+                  {i18n.t('slidebar.ScriptEditor',{ns:'ui'})}
                 </Typography>
               </ListItemText>
             </ListItem>
@@ -428,7 +430,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
                 <Typography
                   color={flashActiveScripts ? "error" : props.page !== Page.ActiveScripts ? "secondary" : "primary"}
                 >
-                  Active Scripts
+                  {i18n.t('slidebar.ActiveScripts',{ns:'ui'})}
                 </Typography>
               </ListItemText>
             </ListItem>
@@ -449,7 +451,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
               </ListItemIcon>
               <ListItemText>
                 <Typography color={props.page !== Page.CreateProgram ? "secondary" : "primary"}>
-                  Create Program
+                {i18n.t('slidebar.CreateProgram',{ns:'ui'})}
                 </Typography>
               </ListItemText>
             </ListItem>
@@ -469,7 +471,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
                 </ListItemIcon>
                 <ListItemText>
                   <Typography color={props.page !== Page.StaneksGift ? "secondary" : "primary"}>
-                    Stanek's Gift
+                  {i18n.t('slidebar.Gift',{ns:'ui'})}
                   </Typography>
                 </ListItemText>
               </ListItem>
@@ -484,7 +486,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
               <AccountBoxIcon color="primary" />
             </Tooltip>
           </ListItemIcon>
-          <ListItemText primary={<Typography>Character</Typography>} />
+          <ListItemText primary={<Typography>{i18n.t('slidebar.Character',{ns:'ui'})}</Typography>} />
           {characterOpen ? <ExpandLessIcon color="primary" /> : <ExpandMoreIcon color="primary" />}
         </ListItem>
         <Collapse in={characterOpen} timeout="auto" unmountOnExit>
@@ -503,7 +505,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
             </ListItemIcon>
             <ListItemText>
               <Typography color={flashStats ? "error" : props.page !== Page.Stats ? "secondary" : "primary"}>
-                Stats
+              {i18n.t('slidebar.Stats',{ns:'ui'})}
               </Typography>
             </ListItemText>
           </ListItem>
@@ -528,7 +530,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
               </ListItemIcon>
               <ListItemText>
                 <Typography color={![Page.Factions, Page.Faction].includes(props.page) ? "secondary" : "primary"}>
-                  Factions
+                {i18n.t('slidebar.Factions',{ns:'ui'})}
                 </Typography>
               </ListItemText>
             </ListItem>
@@ -555,7 +557,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
               </ListItemIcon>
               <ListItemText>
                 <Typography color={props.page !== Page.Augmentations ? "secondary" : "primary"}>
-                  Augmentations
+                {i18n.t('slidebar.Augmentations',{ns:'ui'})}
                 </Typography>
               </ListItemText>
             </ListItem>
@@ -577,7 +579,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
             </ListItemIcon>
             <ListItemText>
               <Typography color={flashHacknet ? "error" : props.page !== Page.Hacknet ? "secondary" : "primary"}>
-                Hacknet
+              {i18n.t('slidebar.Hacknet',{ns:'ui'})}
               </Typography>
             </ListItemText>
           </ListItem>
@@ -597,7 +599,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
                 </Tooltip>
               </ListItemIcon>
               <ListItemText>
-                <Typography color={props.page !== Page.Sleeves ? "secondary" : "primary"}>Sleeves</Typography>
+                <Typography color={props.page !== Page.Sleeves ? "secondary" : "primary"}>{i18n.t('slidebar.Sleeves',{ns:'ui'})}</Typography>
               </ListItemText>
             </ListItem>
           )}
@@ -610,7 +612,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
               <PublicIcon color="primary" />
             </Tooltip>
           </ListItemIcon>
-          <ListItemText primary={<Typography>World</Typography>} />
+          <ListItemText primary={<Typography>{i18n.t('slidebar.World',{ns:'ui'})}</Typography>} />
           {worldOpen ? <ExpandLessIcon color="primary" /> : <ExpandMoreIcon color="primary" />}
         </ListItem>
         <Collapse in={worldOpen} timeout="auto" unmountOnExit>
@@ -630,7 +632,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
             </ListItemIcon>
             <ListItemText>
               <Typography color={flashCity ? "error" : props.page !== Page.City ? "secondary" : "primary"}>
-                City
+                {i18n.t('slidebar.City',{ns:'ui'})}
               </Typography>
             </ListItemText>
           </ListItem>
@@ -648,7 +650,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
               </Tooltip>
             </ListItemIcon>
             <ListItemText>
-              <Typography color={props.page !== Page.Travel ? "secondary" : "primary"}>Travel</Typography>
+              <Typography color={props.page !== Page.Travel ? "secondary" : "primary"}>{i18n.t('slidebar.Travel',{ns:'ui'})}</Typography>
             </ListItemText>
           </ListItem>
           {canJob && (
@@ -667,7 +669,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
                 </Tooltip>
               </ListItemIcon>
               <ListItemText>
-                <Typography color={props.page !== Page.Job ? "secondary" : "primary"}>Job</Typography>
+                <Typography color={props.page !== Page.Job ? "secondary" : "primary"}>{i18n.t('slidebar.Job',{ns:'ui'})}</Typography>
               </ListItemText>
             </ListItem>
           )}
@@ -687,7 +689,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
                 </Tooltip>
               </ListItemIcon>
               <ListItemText>
-                <Typography color={props.page !== Page.StockMarket ? "secondary" : "primary"}>Stock Market</Typography>
+                <Typography color={props.page !== Page.StockMarket ? "secondary" : "primary"}>{i18n.t('slidebar.StockMarket',{ns:'ui'})}</Typography>
               </ListItemText>
             </ListItem>
           )}
@@ -707,7 +709,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
                 </Tooltip>
               </ListItemIcon>
               <ListItemText>
-                <Typography color={props.page !== Page.Bladeburner ? "secondary" : "primary"}>Bladeburner</Typography>
+                <Typography color={props.page !== Page.Bladeburner ? "secondary" : "primary"}>{i18n.t('slidebar.Bladeburner',{ns:'ui'})}</Typography>
               </ListItemText>
             </ListItem>
           )}
@@ -727,7 +729,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
                 </Tooltip>
               </ListItemIcon>
               <ListItemText>
-                <Typography color={props.page !== Page.Corporation ? "secondary" : "primary"}>Corp</Typography>
+                <Typography color={props.page !== Page.Corporation ? "secondary" : "primary"}>{i18n.t('slidebar.Corp',{ns:'ui'})}</Typography>
               </ListItemText>
             </ListItem>
           )}
@@ -747,7 +749,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
                 </Tooltip>
               </ListItemIcon>
               <ListItemText>
-                <Typography color={props.page !== Page.Gang ? "secondary" : "primary"}>Gang</Typography>
+                <Typography color={props.page !== Page.Gang ? "secondary" : "primary"}>{i18n.t('slidebar.Gang',{ns:'ui'})}</Typography>
               </ListItemText>
             </ListItem>
           )}
@@ -760,7 +762,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
               <LiveHelpIcon color="primary" />
             </Tooltip>
           </ListItemIcon>
-          <ListItemText primary={<Typography>Help</Typography>} />
+          <ListItemText primary={<Typography>{i18n.t('slidebar.Help',{ns:'ui'})}</Typography>} />
           {helpOpen ? <ExpandLessIcon color="primary" /> : <ExpandMoreIcon color="primary" />}
         </ListItem>
         <Collapse in={helpOpen} timeout="auto" unmountOnExit>
@@ -778,7 +780,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
               </Tooltip>
             </ListItemIcon>
             <ListItemText>
-              <Typography color={props.page !== Page.Milestones ? "secondary" : "primary"}>Milestones</Typography>
+              <Typography color={props.page !== Page.Milestones ? "secondary" : "primary"}>{i18n.t('slidebar.Milestones',{ns:'ui'})}</Typography>
             </ListItemText>
           </ListItem>
           <ListItem
@@ -796,7 +798,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
             </ListItemIcon>
             <ListItemText>
               <Typography color={flashTutorial ? "error" : props.page !== Page.Tutorial ? "secondary" : "primary"}>
-                Tutorial
+              {i18n.t('slidebar.Tutorial',{ns:'ui'})}
               </Typography>
             </ListItemText>
           </ListItem>
@@ -814,7 +816,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
               </Tooltip>
             </ListItemIcon>
             <ListItemText>
-              <Typography color={props.page !== Page.Achievements ? "secondary" : "primary"}>Achievements</Typography>
+              <Typography color={props.page !== Page.Achievements ? "secondary" : "primary"}>{i18n.t('slidebar.Achievements',{ns:'ui'})}</Typography>
             </ListItemText>
           </ListItem>
           <ListItem
@@ -831,7 +833,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
               </Tooltip>
             </ListItemIcon>
             <ListItemText>
-              <Typography color={props.page !== Page.Options ? "secondary" : "primary"}>Options</Typography>
+              <Typography color={props.page !== Page.Options ? "secondary" : "primary"}>{i18n.t('slidebar.Options',{ns:'ui'})}</Typography>
             </ListItemText>
           </ListItem>
           {process.env.NODE_ENV === "development" && (
@@ -850,7 +852,7 @@ export function SidebarRoot(props: IProps): React.ReactElement {
                 </Tooltip>
               </ListItemIcon>
               <ListItemText>
-                <Typography color={props.page !== Page.DevMenu ? "secondary" : "primary"}>Dev</Typography>
+                <Typography color={props.page !== Page.DevMenu ? "secondary" : "primary"}>{i18n.t('slidebar.Dev',{ns:'ui'})}</Typography>
               </ListItemText>
             </ListItem>
           )}

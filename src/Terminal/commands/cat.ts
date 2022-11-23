@@ -5,9 +5,11 @@ import { showLiterature } from "../../Literature/LiteratureHelpers";
 import { dialogBoxCreate } from "../../ui/React/DialogBox";
 import { checkEnum } from "../../utils/helpers/checkEnum";
 
+import i18n from '../../i18n'
+
 export function cat(args: (string | number | boolean)[], server: BaseServer): void {
   if (args.length !== 1) {
-    Terminal.error("Incorrect usage of cat command. Usage: cat [file]");
+    Terminal.error(i18n.t('cat.error.usage',{ns:'command'}));
     return;
   }
   const relative_filename = args[0] + "";
@@ -20,7 +22,7 @@ export function cat(args: (string | number | boolean)[], server: BaseServer): vo
     !filename.endsWith(".js")
   ) {
     Terminal.error(
-      "Only .msg, .txt, .lit, .script and .js files are viewable with cat (filename must end with .msg, .txt, .lit, .script or .js)",
+      i18n.t('cat.error.file', { ns: 'command' }),
     );
     return;
   }
@@ -29,7 +31,7 @@ export function cat(args: (string | number | boolean)[], server: BaseServer): vo
     for (let i = 0; i < server.messages.length; ++i) {
       if (filename.endsWith(".lit") && server.messages[i] === filename) {
         const file = server.messages[i];
-        if (file.endsWith(".msg")) throw new Error(".lit file should not be a .msg");
+        if (file.endsWith(".msg")) throw new Error(String(i18n.t('cat.error.lit',{ns:'command'})));
         showLiterature(file);
         return;
       } else if (filename.endsWith(".msg")) {
@@ -53,6 +55,6 @@ export function cat(args: (string | number | boolean)[], server: BaseServer): vo
       return;
     }
   }
-
-  Terminal.error(`No such file ${filename}`);
+  //Terminal.error('12');
+  Terminal.error(i18n.t('cat.error.no',{ns:'command'})+filename);
 }

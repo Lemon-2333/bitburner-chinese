@@ -1,0 +1,70 @@
+export default {
+    slidebar:{
+        Hacking:"骇客",
+        Terminal:"终端",
+        ScriptEditor:'脚本编辑器',
+        ActiveScripts:"运行中的脚本",
+        CreateProgram:"创建程序",
+        Gift:"Stanek's Gift",
+
+        Character:"角色",
+        Stats:"统计数据",
+        Factions:"派系",
+        Augmentations:"增强",
+        Hacknet:"黑客网络",
+        Sleeves:"Sleeves",
+
+        World:"世界",
+        City:"城市",
+        Travel:"旅行",
+        Job:"工作",
+        StockMarket:"股票市场",
+        Bladeburner:"刀锋战士",
+        Corp:"公司",
+        Gang:"Gang-干",
+
+        Help:"帮助",
+        Milestones:"里程碑",
+        Tutorial:"教程",
+        Achievements:"成就",
+        Options:"设置",
+        Dev:"开发"
+    },
+    offline:{
+        a:"已经下线",
+        b:". 这是你在下线时的收获:",
+        c:"你的脚本收获 ",
+        d:"你的黑客网络节点收获",
+        e:"你在你的派系获得了",
+        f:"声誉",
+    },
+    ScriptEditor:{
+        no:{
+            a:"没有打开的文件",
+            b:"nano 文件名",
+            c:"在终端中打开文件",
+        },
+        main:{
+            Options:"设置",
+            Beautify:"格式化",
+            Save:"保存",
+            Documentation:"文档",
+            save_q:{
+                a:"你想保存 ",
+                b:"在",
+                c:"吗？"
+            }
+        },
+        Option:{
+            Theme:"主题",
+            CustomTheme:"编辑自定义主题",
+            tab:"在制表符上使用空格",
+            wrap:"自动换行",
+            Bounded:"Bounded",
+            column:"Word Wrap Column",
+            vim:"开启vim模式"
+        }
+        
+    }
+   };
+   //{i18n.t('slidebar.ScriptEditor',{ns:'ui'})}

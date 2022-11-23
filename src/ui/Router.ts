@@ -37,6 +37,7 @@ export enum Page {
   StaneksGift,
   Recovery,
   Achievements,
+  test,
   ThemeBrowser,
   ImportSave,
 }

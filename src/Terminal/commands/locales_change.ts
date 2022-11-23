@@ -8,6 +8,7 @@ export function locales_change(args: (string | number | boolean)[]): void {
     Terminal.error(i18n.t('test', { ns: 'test' }));
     Terminal.error(i18n.t('command.test', { ns: 'test' }));
     i18n.changeLanguage(String(args[0]))
+    localStorage.locales=String(args[0])
     Terminal.error(i18n.t('test', { ns: 'test' }));
     Terminal.error(i18n.t('command.test', { ns: 'test' }));
   }
