@@ -1,0 +1,82 @@
+export default { 
+    NukeProgram:{
+       tooltip:"如果打开了足够多的端口，此病毒可用于获得对计算机的根访问权限。",
+       error:"不能在这种服务器上运行.",
+       a:"您已经拥有此计算机的根访问权限。没有理由运行 NUKE.exe",
+       b:"您现在可以在此服务器上运行脚本。",
+       c:"NUKE 失败。没有打开足够的端口",
+       d:"核爆成功！获得root访问权限",
+     },
+    BruteSSHProgram:{
+       tooltip:"该程序执行打开 SSH 端口的暴力攻击",
+       error:"不能在这种服务器上运行 BruteSSH.exe。",
+       a:"SSH 端口 (22) 已经打开！",
+       b:"打开 SSH 端口（22）！",
+     },
+    FTPCrackProgram:{
+       tooltip:"该程序破解开放的 FTP 端口",
+       error:"无法在此类服务器上运行 FTPCrack.exe。",
+       a:"FTP 端口 (21) 已经打开！",
+       b:"已打开 FTP 端口 (21)！",
+     },
+    RelaySMTPProgram:{
+       tooltip:"该程序通过重定向数据打开 SMTP 端口",
+       error:"无法在此类服务器上运行 relaySMTP.exe。",
+       a:"SMTP 端口 (25) 已经打开！",
+       b:"已打开 SMTP 端口 (25)！",
+     },
+    HTTPWormProgram:{
+       tooltip:"此病毒会打开 HTTP 端口",
+       error:"无法在此类服务器上运行 HTTPWorm.exe。",
+       a:"HTTP 端口 (80) 已经打开！",
+       b:"打开 HTTP 端口 (80)！",
+     },
+    SQLInjectProgram:{
+       tooltip:"此病毒打开 SQL 端口",
+       error:"无法在此类服务器上运行 SQLInject.exe。",
+       a:"SQL 端口 (1433) 已经打开！",
+       b:"打开 SQL 端口 (1433)！",
+     },
+    DeepscanV1:{
+       tooltip:"该程序允许您使用深度达 5 的扫描分析命令",
+       a:"无法运行此可执行文件。",
+       b:"DeepscanV1.exe 允许您运行深度达 5 的“扫描分析”。",
+     },
+    DeepscanV2:{
+       tooltip:"该程序允许您使用深度达 10 的扫描分析命令",
+       a:"无法运行此可执行文件。",
+       b:"DeepscanV1.exe 允许您运行深度高达 10 的“扫描分析”。",
+     },
+    ServerProfiler:{
+       tooltip:"该程序用于显示有关服务器的黑客攻击和 Netscript 相关信息",
+       error:"必须将服务器主机名或 IP 作为参数传递给 ServerProfiler.exe",
+       error_a:"无效的服务器 IP/主机名",
+       error_b:"ServerProfiler.exe 只能在普通服务器上运行。",
+       a:"服务器基本安全级别：",
+       b:"服务器当前安全级别：",
+       c:"服务器增长率：",
+       d:"Netscript hack() 执行时间：",
+       e:"Netscript grow() 执行时间：",
+       f:"Netscript weaken() 执行时间：",
+     },
+    AutoLink:{
+       tooltip:"该程序允许您通过“扫描分析”命令直接连接到其他服务器",
+       a:"无法运行此可执行文件。",
+       b:"AutoLink.exe 允许您在使用“扫描分析”时自动连接到其他服务器。",
+       c:"使用扫描分析时，单击服务器的主机名以连接到它。",
+     },
+    Formulas:{
+       tooltip:"该程序允许您使用公式 API",
+       a:"无法运行此可执行文件。",
+       b:"Formulas.exe 允许您使用公式 API。",
+     },
+    BitFlume:{
+       tooltip:"该程序创建一个通往 BitNode Nexus 的门户（允许您重新启动和切换 BitNodes）",
+     },
+    Flight:{
+       a:"增强：",
+       b:"钱：",
+       c:"黑客技能：",
+       d:"我们将与您联系。",
+     },
+ };

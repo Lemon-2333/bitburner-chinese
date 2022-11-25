@@ -8,10 +8,14 @@ import Typography from "@mui/material/Typography";
 import { recentScripts } from "../../Netscript/RecentScripts";
 import { RecentScriptAccordion } from "./RecentScriptAccordion";
 
+import i18n from "../../i18n"
+
 export function RecentScriptsPage(): React.ReactElement {
   return (
     <>
-      <Typography>List of all recently killed scripts.</Typography>
+      <Typography>
+      {i18n.t('ActiveScript.c',{ns:'ui'})}
+        </Typography>
       {recentScripts.map((r) => (
         <RecentScriptAccordion key={r.runningScript.pid} recentScript={r} />
       ))}

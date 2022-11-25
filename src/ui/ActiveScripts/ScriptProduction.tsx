@@ -18,6 +18,8 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 
+import i18n from "../../i18n"
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     cell: {
@@ -40,7 +42,9 @@ export function ScriptProduction(): React.ReactElement {
       <TableBody>
         <TableRow>
           <TableCell component="th" scope="row" classes={{ root: classes.cell }}>
-            <Typography variant="body2">Total production since last Augment Installation:</Typography>
+            <Typography variant="body2">
+        {i18n.t('ActiveScript.b',{ns:'ui'})}
+            </Typography>
           </TableCell>
           <TableCell align="left" classes={{ root: classes.cell }}>
             <Typography variant="body2">

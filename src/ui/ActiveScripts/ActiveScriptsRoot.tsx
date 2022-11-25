@@ -10,6 +10,8 @@ import { ActiveScriptsPage } from "./ActiveScriptsPage";
 import { RecentScriptsPage } from "./RecentScriptsPage";
 import { WorkerScript } from "../../Netscript/WorkerScript";
 
+import i18n from "../../i18n"
+
 interface IProps {
   workerScripts: Map<number, WorkerScript>;
 }
@@ -32,8 +34,8 @@ export function ActiveScriptsRoot(props: IProps): React.ReactElement {
   return (
     <>
       <Tabs variant="fullWidth" value={tab} onChange={handleChange} sx={{ minWidth: "fit-content", maxWidth: "25%" }}>
-        <Tab label={"Active"} value={"active"} />
-        <Tab label={"Recently Killed"} value={"recent"} />
+        <Tab label={i18n.t('ActiveScript.e',{ns:'ui'})} value={"active"} />
+        <Tab label={i18n.t('ActiveScript.d',{ns:'ui'})} value={"recent"} />
       </Tabs>
 
       {tab === "active" && <ActiveScriptsPage workerScripts={props.workerScripts} />}

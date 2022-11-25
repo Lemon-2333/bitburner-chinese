@@ -11,6 +11,8 @@ import { WorkerScript } from "../../Netscript/WorkerScript";
 
 import Typography from "@mui/material/Typography";
 
+import i18n from "../../i18n";
+
 interface IProps {
   workerScripts: Map<number, WorkerScript>;
 }
@@ -19,9 +21,7 @@ export function ActiveScriptsPage(props: IProps): React.ReactElement {
   return (
     <>
       <Typography>
-        This page displays a list of all of your scripts that are currently running across every machine. It also
-        provides information about each script's production. The scripts are categorized by the hostname of the servers
-        on which they are running.
+        {i18n.t('ActiveScript.a',{ns:'ui'})}
       </Typography>
 
       <ScriptProduction />

@@ -11,6 +11,8 @@ import { Settings } from "../../Settings/Settings";
 import { Programs } from "../Programs";
 import { CreateProgramWork } from "../../Work/CreateProgramWork";
 
+import i18n from "../../i18n"
+
 export const ProgramsSeen: string[] = [];
 
 export function ProgramsRoot(): React.ReactElement {
@@ -67,11 +69,11 @@ export function ProgramsRoot(): React.ReactElement {
 
   return (
     <Container disableGutters maxWidth="lg" sx={{ mx: 0, mb: 10 }}>
-      <Typography variant="h4">Create program</Typography>
+      <Typography variant="h4">
+        {i18n.t('CreateProgram.main.a',{ns:'ui'})}
+      </Typography>
       <Typography>
-        This page displays any programs that you are able to create. Writing the code for a program takes time, which
-        can vary based on how complex the program is. If you are working on creating a program you can cancel at any
-        time. Your progress will be saved and you can continue later.
+        {i18n.t('CreateProgram.main.b',{ns:'ui'})}
       </Typography>
 
       <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", my: 1 }}>
@@ -102,12 +104,15 @@ export function ProgramsRoot(): React.ReactElement {
                       Router.toWork();
                     }}
                   >
-                    Create program
+                  {i18n.t('CreateProgram.main.a',{ns:'ui'})}
                   </Button>
                 )}
                 {Player.hasProgram(program.name) || getHackingLevelRemaining(create.level) === 0 || (
                   <Typography color={Settings.theme.hack}>
-                    <b>Unlocks in:</b> {getHackingLevelRemaining(create.level)} hacking levels
+                    <b>
+                      {i18n.t('CreateProgram.main.c',{ns:'ui'})}
+                      </b> {getHackingLevelRemaining(create.level)}
+                      {i18n.t('CreateProgram.main.d',{ns:'ui'})}
                   </Typography>
                 )}
                 {curCompletion !== -1 && (

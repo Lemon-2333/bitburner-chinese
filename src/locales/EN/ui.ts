@@ -65,6 +65,22 @@ export default {
             vim:"Enable vim mode"
         }
         
+    },
+    ActiveScript:{
+        a:"This page displays a list of all of your scripts that are currently running across every machine. It also provides information about each script's production. The scripts are categorized by the hostname of the servers on which they are running.",
+        b:"Total production since last Augment Installation:",
+        c:"List of all recently killed scripts.",
+        d:"Recently Killed",
+        e:"Active",
+    },
+    CreateProgram:{
+        main:{
+            a:"Create program",
+            b:"This page displays any programs that you are able to create. Writing the code for a program takes time, which can vary based on how complex the program is. If you are working on creating a program you can cancel at any time. Your progress will be saved and you can continue later.",
+            c:"Unlocks in:",
+            d:"hacking levels",
+        },
+        
     }
    };
 

@@ -7,6 +7,7 @@ import zh_common from './locales/chs/common';
 import zh_help from './locales/chs/help';
 import zh_ui from './locales/chs/ui'
 import zh_tutorial from './locales/chs/tutorial'
+import zh_program from './locales/chs/program'
 
 import en_test from './locales/EN/test'
 import en_command from './locales/EN/command'
@@ -14,47 +15,27 @@ import en_common from './locales/EN/common'
 import en_help from './locales/EN/help';
 import en_ui from './locales/EN/ui'
 import en_tutorial from './locales/EN/tutorial'
+import en_program from './locales/EN/program'
 
 const resources = {
   chs: {
-    common: {
-      ...zh_common
-    },
-    test: {
-      ...zh_test
-    },
-    command: {
-      ...zh_command
-    },
-    help:{
-      ...zh_help
-    },
-    ui:{
-      ...zh_ui
-    },
-    tutorial:{
-      ...zh_tutorial
-    }
+    common: zh_common,
+    test: zh_test,
+    command: zh_command,
+    help: zh_help,
+    ui: zh_ui,
+    tutorial: zh_tutorial,
+    program: zh_program,
   },
   en: {
-    common: {
-      ...en_common
-    },
-    test: {
-      ...en_test
-    },
-    command: {
-      ...en_command
-    },
-    help:{
-      ...en_help
-    },
-    ui:{
-      ...en_ui
-    },
-    tutorial:{
-      ...en_tutorial
-    }
+    common: en_common,
+    test: en_test,
+    command: en_command,
+    help: en_help,
+    ui: en_ui,
+    tutorial: en_tutorial,
+    program: en_program,
+
   }
 };
 //console.log(Settings.Locale)

@@ -12,6 +12,8 @@ import { BitFlumeEvent } from "../../BitNode/ui/BitFlumeModal";
 import { calculateHackingTime, calculateGrowTime, calculateWeakenTime } from "../../Hacking";
 import { FactionNames } from "../../Faction/data/FactionNames";
 
+import i18n  from "../../i18n";
+
 function requireHackingLevel(lvl: number) {
   return function () {
     return Player.skills.hacking + Player.skills.intelligence / 2 >= lvl;
@@ -37,28 +39,40 @@ export const programsMetadata: IProgramCreationParams[] = [
     name: "NUKE.exe",
     create: {
       level: 1,
-      tooltip: "This virus is used to gain root access to a machine if enough ports are opened.",
+      tooltip: i18n.t('NukeProgram.tooltip',{ns:'program'}),
       req: requireHackingLevel(1),
       time: CONSTANTS.MillisecondsPerFiveMinutes,
     },
     run: (_args: string[], server: BaseServer): void => {
       if (!(server instanceof Server)) {
-        Terminal.error("Cannot nuke this kind of server.");
+        Terminal.error(
+          i18n.t('NukeProgram.error',{ns:'program'})
+          );
         return;
       }
       if (server.hasAdminRights) {
-        Terminal.print("You already have root access to this computer. There is no reason to run NUKE.exe");
-        Terminal.print("You can now run scripts on this server.");
+        Terminal.print(
+          i18n.t('NukeProgram.a',{ns:'program'})
+        );
+        Terminal.print(
+          i18n.t('NukeProgram.b',{ns:'program'})
+        );
         return;
       }
       if (server.openPortCount >= server.numOpenPortsRequired) {
         server.hasAdminRights = true;
-        Terminal.print("NUKE successful! Gained root access to " + server.hostname);
-        Terminal.print("You can now run scripts on this server.");
+        Terminal.print(
+          i18n.t('NukeProgram.d',{ns:'program'})
+          + server.hostname);
+        Terminal.print(
+          i18n.t('NukeProgram.b',{ns:'program'})
+        );
         return;
       }
 
-      Terminal.print("NUKE unsuccessful. Not enough ports have been opened");
+      Terminal.print(
+        i18n.t('NukeProgram.c',{ns:'program'})
+      );
     },
   },
   {
@@ -66,22 +80,28 @@ export const programsMetadata: IProgramCreationParams[] = [
     name: "BruteSSH.exe",
     create: {
       level: 50,
-      tooltip: "This program executes a brute force attack that opens SSH ports",
+      tooltip:i18n.t('BruteSSHProgram.tooltip',{ns:'program'}),
       req: requireHackingLevel(50),
       time: CONSTANTS.MillisecondsPerFiveMinutes * 2,
     },
     run: (_args: string[], server: BaseServer): void => {
       if (!(server instanceof Server)) {
-        Terminal.error("Cannot run BruteSSH.exe on this kind of server.");
+        Terminal.error(
+          i18n.t('BruteSSHProgram.error',{ns:'program'})
+        );
         return;
       }
       if (server.sshPortOpen) {
-        Terminal.print("SSH Port (22) is already open!");
+        Terminal.print(
+          i18n.t('BruteSSHProgram.a',{ns:'program'})
+        );
         return;
       }
 
       server.sshPortOpen = true;
-      Terminal.print("Opened SSH Port(22)!");
+      Terminal.print(
+        i18n.t('BruteSSHProgram.b',{ns:'program'})
+      );
       server.openPortCount++;
     },
   },
@@ -90,22 +110,28 @@ export const programsMetadata: IProgramCreationParams[] = [
     name: "FTPCrack.exe",
     create: {
       level: 100,
-      tooltip: "This program cracks open FTP ports",
+      tooltip: i18n.t('FTPCrackProgram.tooltip',{ns:'program'}),
       req: requireHackingLevel(100),
       time: CONSTANTS.MillisecondsPerHalfHour,
     },
     run: (_args: string[], server: BaseServer): void => {
       if (!(server instanceof Server)) {
-        Terminal.error("Cannot run FTPCrack.exe on this kind of server.");
+        Terminal.error(
+          i18n.t('FTPCrackProgram.error',{ns:'program'})
+        );
         return;
       }
       if (server.ftpPortOpen) {
-        Terminal.print("FTP Port (21) is already open!");
+        Terminal.print(
+          i18n.t('FTPCrackProgram.a',{ns:'program'})
+        );
         return;
       }
 
       server.ftpPortOpen = true;
-      Terminal.print("Opened FTP Port (21)!");
+      Terminal.print(
+        i18n.t('FTPCrackProgram.b',{ns:'program'})
+      );
       server.openPortCount++;
     },
   },
@@ -114,22 +140,26 @@ export const programsMetadata: IProgramCreationParams[] = [
     name: "relaySMTP.exe",
     create: {
       level: 250,
-      tooltip: "This program opens SMTP ports by redirecting data",
+      tooltip:i18n.t('RelaySMTPProgram.tooltip',{ns:'program'}),
       req: requireHackingLevel(250),
       time: CONSTANTS.MillisecondsPer2Hours,
     },
     run: (_args: string[], server: BaseServer): void => {
       if (!(server instanceof Server)) {
-        Terminal.error("Cannot run relaySMTP.exe on this kind of server.");
+        Terminal.error(i18n.t('RelaySMTPProgram.error',{ns:'program'}));
         return;
       }
       if (server.smtpPortOpen) {
-        Terminal.print("SMTP Port (25) is already open!");
+        Terminal.print(
+          i18n.t('RelaySMTPProgram.a',{ns:'program'})
+        );
         return;
       }
 
       server.smtpPortOpen = true;
-      Terminal.print("Opened SMTP Port (25)!");
+      Terminal.print(
+        i18n.t('RelaySMTPProgram.b',{ns:'program'})
+      );
       server.openPortCount++;
     },
   },
@@ -138,22 +168,28 @@ export const programsMetadata: IProgramCreationParams[] = [
     name: "HTTPWorm.exe",
     create: {
       level: 500,
-      tooltip: "This virus opens up HTTP ports",
+      tooltip:i18n.t('HTTPWormProgram.tooltip',{ns:'program'}),
       req: requireHackingLevel(500),
       time: CONSTANTS.MillisecondsPer4Hours,
     },
     run: (_args: string[], server: BaseServer): void => {
       if (!(server instanceof Server)) {
-        Terminal.error("Cannot run HTTPWorm.exe on this kind of server.");
+        Terminal.error(
+          i18n.t('HTTPWormProgram.error',{ns:'program'})
+        );
         return;
       }
       if (server.httpPortOpen) {
-        Terminal.print("HTTP Port (80) is already open!");
+        Terminal.print(
+          i18n.t('HTTPWormProgram.a',{ns:'program'})
+        );
         return;
       }
 
       server.httpPortOpen = true;
-      Terminal.print("Opened HTTP Port (80)!");
+      Terminal.print(
+        i18n.t('HTTPWormProgram.b',{ns:'program'})
+      );
       server.openPortCount++;
     },
   },
@@ -162,22 +198,28 @@ export const programsMetadata: IProgramCreationParams[] = [
     name: "SQLInject.exe",
     create: {
       level: 750,
-      tooltip: "This virus opens SQL ports",
+      tooltip: i18n.t('SQLInjectProgram.tooltip',{ns:'program'}),
       req: requireHackingLevel(750),
       time: CONSTANTS.MillisecondsPer8Hours,
     },
     run: (_args: string[], server: BaseServer): void => {
       if (!(server instanceof Server)) {
-        Terminal.error("Cannot run SQLInject.exe on this kind of server.");
+        Terminal.error(
+          i18n.t('SQLInjectProgram.error',{ns:'program'})
+        );
         return;
       }
       if (server.sqlPortOpen) {
-        Terminal.print("SQL Port (1433) is already open!");
+        Terminal.print(
+          i18n.t('SQLInjectProgram.a',{ns:'program'})
+        );
         return;
       }
 
       server.sqlPortOpen = true;
-      Terminal.print("Opened SQL Port (1433)!");
+      Terminal.print(
+        i18n.t('SQLInjectProgram.b',{ns:'program'})
+      );
       server.openPortCount++;
     },
   },
@@ -186,13 +228,13 @@ export const programsMetadata: IProgramCreationParams[] = [
     name: "DeepscanV1.exe",
     create: {
       level: 75,
-      tooltip: "This program allows you to use the scan-analyze command with a depth up to 5",
+      tooltip: i18n.t('DeepscanV1.tooltip',{ns:'program'}),
       req: requireHackingLevel(75),
       time: CONSTANTS.MillisecondsPerQuarterHour,
     },
     run: (): void => {
-      Terminal.print("This executable cannot be run.");
-      Terminal.print("DeepscanV1.exe lets you run 'scan-analyze' with a depth up to 5.");
+      Terminal.print(i18n.t('DeepscanV1.a',{ns:'program'}));
+      Terminal.print(i18n.t('DeepscanV1.b',{ns:'program'}));
     },
   },
   {
@@ -200,13 +242,13 @@ export const programsMetadata: IProgramCreationParams[] = [
     name: "DeepscanV2.exe",
     create: {
       level: 400,
-      tooltip: "This program allows you to use the scan-analyze command with a depth up to 10",
+      tooltip: i18n.t('DeepscanV2.tooltip',{ns:'program'}),
       req: requireHackingLevel(400),
       time: CONSTANTS.MillisecondsPer2Hours,
     },
     run: (): void => {
-      Terminal.print("This executable cannot be run.");
-      Terminal.print("DeepscanV2.exe lets you run 'scan-analyze' with a depth up to 10.");
+      Terminal.print(i18n.t('DeepscanV2.a',{ns:'program'}));
+      Terminal.print(i18n.t('DeepscanV2.b',{ns:'program'}));
     },
   },
   {
@@ -214,45 +256,57 @@ export const programsMetadata: IProgramCreationParams[] = [
     name: "ServerProfiler.exe",
     create: {
       level: 75,
-      tooltip: "This program is used to display hacking and Netscript-related information about servers",
+      tooltip: i18n.t('ServerProfiler.tooltip',{ns:'program'}),
       req: requireHackingLevel(75),
       time: CONSTANTS.MillisecondsPerHalfHour,
     },
     run: (args: string[]): void => {
       if (args.length !== 1) {
-        Terminal.error("Must pass a server hostname or IP as an argument for ServerProfiler.exe");
+        Terminal.error(
+          i18n.t('ServerProfiler.error',{ns:'program'})
+          );
         return;
       }
 
       const targetServer = GetServer(args[0]);
       if (targetServer == null) {
-        Terminal.error("Invalid server IP/hostname");
+        Terminal.error(
+          i18n.t('ServerProfiler.error_a',{ns:'program'})
+        );
         return;
       }
 
       if (!(targetServer instanceof Server)) {
-        Terminal.error(`ServerProfiler.exe can only be run on normal servers.`);
+        Terminal.error(
+          i18n.t('ServerProfiler.error_b',{ns:'program'})
+        );
         return;
       }
 
       Terminal.print(targetServer.hostname + ":");
-      Terminal.print("Server base security level: " + targetServer.baseDifficulty);
-      Terminal.print("Server current security level: " + targetServer.hackDifficulty);
-      Terminal.print("Server growth rate: " + targetServer.serverGrowth);
       Terminal.print(
-        `Netscript hack() execution time: ${convertTimeMsToTimeElapsedString(
+         i18n.t('ServerProfiler.a',{ns:'program'})
+          + targetServer.baseDifficulty);
+      Terminal.print(
+        i18n.t('ServerProfiler.b',{ns:'program'})
+        + targetServer.hackDifficulty);
+      Terminal.print(
+        i18n.t('ServerProfiler.c',{ns:'program'})
+        + targetServer.serverGrowth);
+      Terminal.print(
+        `${i18n.t('ServerProfiler.d',{ns:'program'})}${convertTimeMsToTimeElapsedString(
           calculateHackingTime(targetServer, Player) * 1000,
           true,
         )}`,
       );
       Terminal.print(
-        `Netscript grow() execution time: ${convertTimeMsToTimeElapsedString(
+        `${i18n.t('ServerProfiler.e',{ns:'program'})}${convertTimeMsToTimeElapsedString(
           calculateGrowTime(targetServer, Player) * 1000,
           true,
         )}`,
       );
       Terminal.print(
-        `Netscript weaken() execution time: ${convertTimeMsToTimeElapsedString(
+        `${i18n.t('ServerProfiler.f',{ns:'program'})}${convertTimeMsToTimeElapsedString(
           calculateWeakenTime(targetServer, Player) * 1000,
           true,
         )}`,
@@ -264,14 +318,14 @@ export const programsMetadata: IProgramCreationParams[] = [
     name: "AutoLink.exe",
     create: {
       level: 25,
-      tooltip: "This program allows you to directly connect to other servers through the 'scan-analyze' command",
+      tooltip: i18n.t('AutoLink.tooltip',{ns:'program'}),
       req: requireHackingLevel(25),
       time: CONSTANTS.MillisecondsPerQuarterHour,
     },
     run: (): void => {
-      Terminal.print("This executable cannot be run.");
-      Terminal.print("AutoLink.exe lets you automatically connect to other servers when using 'scan-analyze'.");
-      Terminal.print("When using scan-analyze, click on a server's hostname to connect to it.");
+      Terminal.print(i18n.t('AutoLink.a',{ns:'program'}));
+      Terminal.print(i18n.t('AutoLink.b',{ns:'program'}));
+      Terminal.print(i18n.t('AutoLink.c',{ns:'program'}));
     },
   },
   {
@@ -279,13 +333,13 @@ export const programsMetadata: IProgramCreationParams[] = [
     name: "Formulas.exe",
     create: {
       level: 1000,
-      tooltip: "This program allows you to use the formulas API",
+      tooltip: i18n.t('Formulas.tooltip',{ns:'program'}),
       req: requireHackingLevel(1000),
       time: CONSTANTS.MillisecondsPer4Hours,
     },
     run: (): void => {
-      Terminal.print("This executable cannot be run.");
-      Terminal.print("Formulas.exe lets you use the formulas API.");
+      Terminal.print(i18n.t('Formulas.a',{ns:'program'}));
+      Terminal.print(i18n.t('Formulas.b',{ns:'program'}));
     },
   },
   {
@@ -293,7 +347,7 @@ export const programsMetadata: IProgramCreationParams[] = [
     name: "b1t_flum3.exe",
     create: {
       level: 1,
-      tooltip: "This program creates a portal to the BitNode Nexus (allows you to restart and switch BitNodes)",
+      tooltip: i18n.t('BitFlume.tooltip',{ns:'program'}),
       req: bitFlumeRequirements(),
       time: CONSTANTS.MillisecondsPerFiveMinutes / 20,
     },
@@ -310,13 +364,13 @@ export const programsMetadata: IProgramCreationParams[] = [
       const fulfilled =
         Player.augmentations.length >= numAugReq && Player.money > 1e11 && Player.skills.hacking >= 2500;
       if (!fulfilled) {
-        Terminal.print(`Augmentations: ${Player.augmentations.length} / ${numAugReq}`);
-        Terminal.print(`Money: ${numeralWrapper.formatMoney(Player.money)} / $100b`);
-        Terminal.print(`Hacking skill: ${Player.skills.hacking} / 2500`);
+        Terminal.print(`${i18n.t('Flight.a',{ns:'program'})} ${Player.augmentations.length} / ${numAugReq}`);
+        Terminal.print(`${i18n.t('Flight.b',{ns:'program'})} ${numeralWrapper.formatMoney(Player.money)} / $100b`);
+        Terminal.print(`${i18n.t('Flight.c',{ns:'program'})} ${Player.skills.hacking} / 2500`);
         return;
       }
 
-      Terminal.print("We will contact you.");
+      Terminal.print(i18n.t('Flight.d',{ns:'program'}));
       Terminal.print(`-- ${FactionNames.Daedalus} --`);
     },
   },
